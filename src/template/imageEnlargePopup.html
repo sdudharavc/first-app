@@ -1,0 +1,12 @@
+<div class="widget-poups add-pop-up">
+	<div class="modal-header">
+		<div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+		<h3 id="myModalLabel" class="modal-title">Floor Image</h3>
+		<a class="btn imageEnlargeRefresh margin-2" title="Reset" ng-click="imgStyle.width = imageStockWidth + 'px'"><i class="glyphicon glyphicon-refresh"></i></a>
+	</div>
+	<div class="widget-poups imageEnlargeDiv">
+    	<img class="imageEnlarge" id="imageEnlarge" ng-src="data:image/png;base64,{{imgData}}" alt="Image Not Found" ng-init="imageIntialWidth;" ng-style="imgStyle;" 
+	    	ng-mouse-wheel-up="imageIntialWidth = imageIntialWidth + 50; imgStyle.width = imageIntialWidth +'px'; " 
+	    	ng-mouse-wheel-down="imageIntialWidth = imageIntialWidth - 50;imgStyle.width = imageIntialWidth  +'px';" />  
+	</div>
+</div>

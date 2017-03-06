@@ -1,0 +1,6 @@
+<div id="note{{action.childWidgets}}" ng-class="{'ntWidgetMain' : !action.editMode, 'ntWidgetMainForTextArea' : action.editMode}">
+	<!-- <h3 class="ntRemoveMargin ntTextColor">{{action.data.title}}</h3>
+	<hr class="ntRemoveMargin ntTextColor"> -->
+	<p  ng-if="!action.editMode" class="ntTextColor" >{{action.data.description}}</p>
+	<textarea class="ntTextArea ntTextColor" ng-if="action.editMode" ng-model="action.data.description"></textarea>
+</div>

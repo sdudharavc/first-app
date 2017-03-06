@@ -1,0 +1,15 @@
+<div class="panel-body">
+	<div class="text-center pv"><div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div><h3 >About</h3></div>
+	<form role="form" name="form" novalidate class="form-validate mb-lg" >
+		<div class="navBarText text-justify" ng-bind="norlinxAbout"></div>
+		<br>
+		<div class="navBarText text-justify" ng-bind="('Speciality : ') + norlinxSpeciality"></div>
+		<br>
+		<div class="block-center lgDisplayTable"><div class="navBarText text-center pull-left" ng-bind="appVersion"></div>
+      		<a ng-init="getChangeLog()" class="fa fa-info-circle dash-info" tooltip-class=""  tooltip-placement="right" uib-tooltip="{{changeLog}}" ></a>
+      	</div>
+		<div class="navBarText text-center" ng-bind="dbversion"></div>
+		<br>
+          	<button type="submit" class="btn btn-block btn-primary mt-lg" ng-click="ok()">Ok</button>
+	</form>
+</div>

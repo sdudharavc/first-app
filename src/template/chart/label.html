@@ -1,0 +1,4 @@
+<div class="ntWidgetMain">
+	<p  ng-if="!action.editMode" class="ntTextColor" ng-bind="action.data.label"></p>
+	<textarea class="ntTextArea ntTextColor" ng-if="action.editMode" ng-model="action.data.label"></textarea>
+</div>

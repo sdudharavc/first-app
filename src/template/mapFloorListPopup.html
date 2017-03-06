@@ -1,0 +1,15 @@
+<div class="gdb-data-table">
+<div class="modal-header">
+	<div class="close-button" ng-click="cancelmapFloorListPopup()" aria-hidden="true">&times;</div>
+ 	<h3>Floor Name</h3>
+</div>
+
+<div class="modal-dialog mflpDialog">
+    <div class="modal-content mapFloorContent">
+          <div class="floor-list-container" ng-scrollbars>
+             <div ng-repeat="floorList in mapFloorList" >
+                 <div class="odd" ng-class-odd="'rack-labels'" ng-class-even="'rack-labels-even'"  ng-click="getDataFloorListData(floorList)" ng-bind="floorList.FloorName"></div>
+             </div>
+         </div>
+    </div>
+</div>

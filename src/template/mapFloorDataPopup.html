@@ -1,0 +1,40 @@
+<div class="gdb-data-table">
+<div class="modal-header">
+    <div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+ 	<h3>Floor Name</h3>
+</div>
+
+<div class="modal-dialog mflpDialog" >
+    <div class="modal-content mapFloorContent" ng-scrollbars>
+          <div class="floor-list-container">
+             <table class="floor-list-container">
+                <td class="floor_list">
+                <tr>
+                    Length: {{mapFloorListData.Length}}
+                </tr>
+                <tr>
+                    Width: {{mapFloorListData.Width}}
+                </tr>
+                </td>
+                <td class="floor_list">
+                <tr>
+                    Height: {{mapFloorListData.Height}}
+                </tr>
+                <tr>
+                    Ceiling height: {{mapFloorListData.Ceiling_Height}}
+                </tr>
+                </td>
+                <td class="floor_list">
+                <tr>
+                    Last opened at: {{mapFloorListData.LastOpenedAt}}
+                </tr>
+                </td>
+                <td class="floor_list">
+                <tr>
+                    End date: {{mapFloorListData.EndDate}}
+                </tr>
+                </td>
+            </table>
+         </div>
+    </div>
+</div>

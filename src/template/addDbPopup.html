@@ -1,0 +1,20 @@
+<div class="panel-body">
+	<p class="text-center pv">Add Database</p>
+	<form role="form" name="form" novalidate class="form-validate mb-lg">
+          	<div class="col-lg-12 col-md-12 form-group has-feedback">
+			<input type="text" class="form-control" name="host" placeholder="Host" ng-model="data.host" required/>
+		</div>
+		<div class="col-lg-12 col-md-12 form-group has-feedback">
+			<input type="text" name="dbname" class="form-control"  placeholder="Database name*" ng-model="data.dbname" required/>
+		</div>
+		<div class="col-lg-12 col-md-12 form-group has-feedback">
+			<input type="text" name="username" class="form-control"  placeholder="Username*" ng-model="data.username" required/>
+		</div>
+		<div class="col-lg-12 col-md-12 form-group has-feedback">
+			<input type="password" class="form-control" name="password" placeholder="Password*" ng-model="data.password" required/>
+		</div>
+		<div class="navBarText text-center">Server : SQL Server</div>
+		<br>
+          	<button type="submit" class="btn btn-block btn-primary mt-lg" ng-click="createDb(data, form)">Connect</button>
+	</form>
+</div>

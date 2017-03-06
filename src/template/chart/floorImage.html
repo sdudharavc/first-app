@@ -1,0 +1,4 @@
+<div ng-controller="DashboardCtrl">
+	<img ng-show="action.data.imgData" ng-src="data:image/png;base64,{{action.data.imgData}}" id='floorImage{{action.childWidgets}}' 
+	style=" height: 700px; width:700px;"class="handleImage" alt="Image Not Found" ng-click="imageEnlargePopup(action.data.imgData)"/>  
+</div>

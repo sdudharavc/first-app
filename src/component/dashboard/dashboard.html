@@ -1,0 +1,193 @@
+<div class="page-header">
+    <div class="dTopBarSetting pull-right">
+        <a class="btn c_white dAddDashboard" title="Create Dashboard" ng-click="createDashboardPopup()" ng-if="AllowWriteDashboardForCreate"><i class="fa fa-plus"></i></a>
+        <toggle-switch
+            ng-model="switchStatus"
+            class="switch-danger">
+          </toggle-switch>
+           <a class="btn c_white dAddDashboard" title="Expand Dashboard" toggle-fullscreen="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+    </div>
+    <div class="dTopBarSelect ">
+        <select id="dashBoardSelect" class="form-control dashSelect dSelectRight" ng-model="selectedDashboardId"
+                ng-change="changeDashboard(selectedDashboardId)" ng-options="d.id as d.name for d in dashboards | orderBy:'name'">
+            <option value="" disabled>Select</option>
+        </select>
+        <!-- <ui-select class="form-control dashSelect dSelectRight" ng-model="selectedDashboardId" theme="selectize" title="Choose a dashboard">
+	            <ui-select-match placeholder="Select or search a dashboard in the list...">{{$select.selected.name}}</ui-select-match>
+	            <ui-select-choices repeat="d in dashboards |filter: $select.search">
+	              <div ng-bind-html="d.name | highlight: $select.search"></div>
+	              <small ng-bind-html="item.email | highlight: $select.search"></small>
+	            </ui-select-choices>
+          	</ui-select> -->
+    </div>
+</div>
+<div class="dashboardHeader" ng-if="siteAlertData!=undefined">
+ 	<a id="alert1" title="Critical Alert" class="brand-logo active alertButtonsMargin"  ng-click="alertDataListingModel('critical', siteAlertData.countCriticalAlertData)" >
+		<img ng-src="img/alerticons/critical_alert.png" class="alertButtonImg"/>
+		<span ng-bind="' ' + siteAlertData.countCriticalAlertData.length"></span>
+	</a>
+	<a id="alert2" title="Warning Alert" class="brand-logo active alertButtonsMargin" ng-click="alertDataListingModel('warning', siteAlertData.countWarningAlertData)" >
+		<img ng-src="img/alerticons/warning_alert.png" class="alertButtonImg"/>
+		<span ng-bind="' ' + siteAlertData.countWarningAlertData.length"></span>
+	</a>
+	<a id="alert3" title="Fail Over Alert" class="brand-logo active alertButtonsMargin" ng-click="alertDataListingModel('fail', siteAlertData.countFailAlertData)" >
+		<img ng-src="img/alerticons/fail_over_alert.png" class="alertButtonImg"/>
+		<span ng-bind="' ' + siteAlertData.countFailAlertData.length"></span>
+	</a>
+	<a id="alert4" title="Inventory Alert" class="brand-logo active alertButtonsMargin" ng-click="alertDataListingModel('inventory',siteAlertData.countInventoryAlertData)">
+		<img ng-src="img/alerticons/inventory_alert.png" class="alertButtonImg" />
+		<span ng-bind="' ' + siteAlertData.countInventoryAlertData.length"></span>
+	</a>
+    <a href="#"><span id="DBnm" title="DBName" class="brand-logo active alertButtonsMargin" ng-init="gotoDbList()" >{{  databseList[0].dbname }} - {{ siteList[0].SiteName}}</<span></a>
+</div>
+    
+
+<div class="fixedSubheader">
+	<div ng-init="init()" ng-show="editDashboardName && selectedDashboardName!==undefined && selectedDashboardName!==''" class="dSelectedDashboardName">
+	   	<span class="dashboardCursor" ng-click="editDashboard()">{{selectedDashboardName}}</span>
+	    <!-- <a title="Edit Dashboard" ng-if="editDashboardName" ng-click="editDashboard()">
+			<i class="glyphicon glyphicon-pencil dEditableNameIcons"></i>
+	    </a> -->
+	</div> 
+	<div name="editDashboard" ng-if="!editDashboardName" ng-class="{'save_show' :!editDashboardName}" >
+		<input type="text" class="dSelectedDashboardNameForInput dEditableInputDashboard" ng-model="selectedDashboardName" maxlength="25"/>
+	    <a title="Save Dashboard name" ng-click="updateDashboard(selectedDashboardId, selectedDashboardName)" class="dsaveButton">
+			<i class="glyphicon glyphicon-floppy-save dEditableNameIcons"></i>
+		</a>
+	</div>
+    <div class="pull-right dSpecificWidget" ng-if="selectedDashboardName!=='' && selectedDashboardName!==undefined" ng-class="{'dashboardIconSlide' : dashboardIconSlide}">
+    	<div class="btn_gr_new">
+   	 	<a class="btn dTopIcons margin-2" ng-if="gridsterOptions.resizable.enabled && dashboardIconSlide"  title="Lock" ng-click="lock('0',selectedDashboardId)"><i class="fa fa-unlock"></i></a>
+   	 	<a class="btn dTopIcons margin-2" ng-if="!gridsterOptions.resizable.enabled  && dashboardIconSlide" ng-class="{'lockPosition' : !gridsterOptions.resizable.enabled}" title="Unlock" ng-click="lock('1', selectedDashboardId)"><i class="fa fa-lock"></i></a>
+    	<a class="btn dTopIcons margin-2" ng-if="dashboardIconSlide" title="Refresh Widget's data" ng-click="refreshAllWidgetdata()"><i class="glyphicon glyphicon-refresh"></i></a>
+       	<a class="btn dTopIcons margin-2" ng-if="gridsterOptions.resizable.enabled && dashboardIconSlide" title="Add Widget" ng-click="addWidgetPopup(selectedDashboardId, dashboard)"><i class="fa fa-th-large"></i></a>
+        <a class="btn dTopIcons margin-2" ng-if="gridsterOptions.resizable.enabled && dashboardIconSlide" title="Save widget's order" ng-click="saveAll(selectedDashboardId)"><i class="glyphicon glyphicon-floppy-saved"></i></a>
+        <a class="btn dTopIcons margin-2" ng-if="gridsterOptions.resizable.enabled && dashboardIconSlide" title="Clear Dashboard" ng-click="clearDashboardWidgets()"><i class="fa fa-minus-circle"></i></a>
+        <a class="btn dTopIcons margin-2" ng-if="gridsterOptions.resizable.enabled && dashboardIconSlide" title="Delete Dashboard" ng-click="deleteDashboard(selectedDashboardId)"><i class="glyphicon glyphicon-trash"></i></a>
+        </div>
+        <a class="btn dots margin-2" ng-click="dashboardIconSlideOpenClose()"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+    </div>
+
+</div>
+
+<div> 
+     <div gridster="gridsterOptions">
+        <ul class="with-3d-shadow with-transitions">
+            <li class="block-widget" gridster-item="widget" ng-repeat="widget in dashboard.widgetsData">
+                <div class="box">
+                    <div class="box-header" ng-controller="CustomWidgetCtrl" ng-class="{'gaugeHeaderBackgroundRed' : (widget.data.headerColor && widget.data.headerColorInput)}">
+                        <h3 ng-if="widget.jsfunctionname != 'chart_label'" class="dForElipsisData"><b>{{widget.name}}</b></h3>
+                        <div class="box-header-btns pull-right">
+                            <a title="Edit Note"  class="glyphicon glyphicon-pencil" ng-if="(widget.jsfunctionname === 'chart_notes' || widget.jsfunctionname === 'chart_label') && !widget.editMode && gridsterOptions.resizable.enabled" 
+                               ng-click="EditNote(widget, $index)"><!-- <i class="glyphicon glyphicon-pencil"></i> --></a>
+                            <a title="Save Note"  class="glyphicon glyphicon-floppy-save" ng-if="(widget.jsfunctionname === 'chart_notes' || widget.jsfunctionname === 'chart_label') && widget.editMode && gridsterOptions.resizable.enabled" 
+                               ng-click="SaveNote(widget, $index)"><!-- <i class="glyphicon glyphicon-floppy-save"></i> --></a>
+                            <a title="Refresh data"  class="glyphicon glyphicon-refresh" ng-click="getWidgetdata(widget, $index)"><!-- <i class="glyphicon glyphicon-refresh"></i> --></a>
+                            <a title="Copy widget"  class="glyphicon glyphicon-copy" ng-if="gridsterOptions.resizable.enabled" ng-click="copyWidget(widget, $index)"><!-- <i class="glyphicon glyphicon-copy"></i> --></a>
+                            <a title="Settings" class="glyphicon glyphicon-cog" ng-if="widget.jsfunctionname != 'chart_label' && gridsterOptions.resizable.enabled" ng-click="openSettings(widget, $index)"><!-- <i class="glyphicon glyphicon-cog"></i> --></a>
+                            <a title="Remove widget" class="glyphicon glyphicon-trash" ng-click="deleteWidget(widget, $index)" ng-if="gridsterOptions.resizable.enabled"><!-- <i class="glyphicon glyphicon-trash"></i> --></a>
+                            <a title="View In grid" class="fa fa-th" ng-click="viewGrid(widget, $index)"  ng-if="(widget.jsfunctionname == 'pue_line_chart'
+                                   || widget.jsfunctionname == 'bar_sensor' || widget.jsfunctionname == 'line_sensor' || widget.jsfunctionname == 'line_getwithoutpuehistory'
+                                   || widget.jsfunctionname == 'bar_getwithoutpuehistory' || widget.jsfunctionname == 'bar_thresold' || widget.jsfunctionname == 'line_thresold'
+                                   || widget.jsfunctionname == 'area_thresold' || widget.jsfunctionname == 'pue_bar_chart' || widget.jsfunctionname == 'area_sensor'
+                                   || widget.jsfunctionname == 'pue_area_chart' || widget.jsfunctionname == 'area_getwithoutpuehistory')
+                                   && widget.chart.data.length > 0"><!-- <i class="fa fa-th"></i> -->
+                            </a>
+                            <a ng-if="(widget.jsfunctionname != 'chart_label' && widget.dataFound)" class="dLastUpdatedDate timer_update fa fa-clock-o"
+                            	 uib-tooltip="{{('Last Updated: ')+(widget.lastUpdated| changeDateToUTC)}}"><!-- <i class="fa fa-clock-o"></i> --></a>
+                            <ul>
+                                <li  ng-if="widget.changeGraphIcon == true && widget.chart.data.length > 0 && gridsterOptions.resizable.enabled" ng-mouseenter="changeGraph = true" ng-mouseleave="changeGraph = false">
+                                    <a class="click_btn btn margin-2 fa fa-exchange" title="Change Chart" > <!-- <i class="fa fa-exchange"></i> --></a>
+                                    <ul class="chart_changer">
+                                        <li> 
+                                            <span class="animate-show" ng-show="changeGraph == true" ng-repeat="convert in widget.convertableGraph | orderBy:'name'">
+                                            	<i class="cbarIconAll" ng-class="{'cbarIcon': convert.name=='Bar', 'careaIcon': convert.name=='Area', 'clineIcon': convert.name=='Line'}"></i>
+                                                <a class="line" ng-click='changeWidget(convert, widget, $parent.$index)' ng-bind="convert.name"></a>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+           
+                        </div>
+                        <div class="dSubTtile envo_sensor ">
+                          <div class="widget-sub-title" >
+                            <span ng-if="widget.jsfunctionname != 'chart_label'" class="dForElipsisData" uib-tooltip="{{widget.widgetname}}">{{widget.widgetname}}</span>
+                          </div>  
+                        </div>
+                    </div>
+                    <div ng-show="widget.showLoading"  class="ball-beat"><div></div><div></div><div></div></div>
+                    <div ng-if="!widget.showLoading && widget.retryError" class="noDataFound">
+                    	<a title="Refresh" ng-click="getWidgetdata(widget, $index)">
+                    		<i class="glyphicon glyphicon-refresh widgetRetryRefresh"></i>
+                    	</a>
+                    </div>
+                    <div ng-if="!widget.showLoading && !widget.dataFound && widget.configureWidget" class="noDataFound">No Data Found</div>
+					<div ng-controller="CustomWidgetCtrl" ng-if="!widget.showLoading && !widget.dataFound && !widget.configureWidget && !gridsterOptions.resizable.enabled"
+						class="noDataFound"><a class="">No Data Found</a>
+					</div>
+					<div ng-controller="CustomWidgetCtrl" ng-if="!widget.showLoading && !widget.dataFound && !widget.configureWidget && gridsterOptions.resizable.enabled" ng-click="openSettings(widget, $index)" 
+						class="noDataFound"><a class="gridSetButtonColor"><i class="glyphicon glyphicon-cog"></i>Configure Widget</a>
+					</div>
+                    <div ng-show="!widget.showLoading && widget.dataFound && !widget.retryError" class="box-content set-style-li-{{widget.childWidgets}}">
+                        <dynamic ng-init="getWidgetdata(widget, $index)" action="widget"></dynamic>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</div> 
+    <div ng-if="(!dataFoundForDashboard ||  dashboard.widgetsData.length==0) && selectedDashboardName!=='' && selectedDashboardName!=undefined"  class="gridsterNoDataFound grid navBarText block-center">
+		<div class="noDataFound"   ng-if="!gridsterOptions.resizable.enabled" >Empty Dashboard</div>
+		<div class="noDataFound" ng-if="gridsterOptions.resizable.enabled" ng-click="addWidgetPopup(selectedDashboardId, dashboard)"><i class="fa fa-th-large"></i> Empty Dashboard</div>
+ 	</div>
+ 	<div ng-if="selectedDashboardName=='' || selectedDashboardName==undefined"  class="gridsterNoDataFound grid navBarText block-center">
+		<div class="noDataFound" ng-if="!gridsterOptions.resizable.enabled">Add Dashboard</div>
+		<div class="noDataFound" ng-if="gridsterOptions.resizable.enabled" ng-click="createDashboardPopup()"><i class="fa fa-plus"></i> Add Dashboard</div>
+ 	</div>
+</div>
+<!-- <div>
+    <div owl-carousel="owl.items" owl-options="owl.options">
+        <div class="item">{{ item }}</div>
+    </div>
+</div> -->
+<div class="modal fade" id="myFloorListModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="start-exam-title">Floor Name</h3>
+            <div class="floor-list-container">
+                <div ng-repeat="floorList in mapFloorList" class="floor_list">
+                    <div ng-click="getDataFloorListData(floorList)">{{floorList.FloorName}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    ul {
+        list-style: none;
+    }
+    .box-header {
+        height: 55px;
+        top:0;
+        left:0;
+        width: 100%;
+    }
+    .box-header h3 {
+        width: 100%;
+        margin: 5px;
+        display: inline-block;
+    }
+    .box-content {
+       height: 100%;
+        padding: 0px;
+    }
+    form {
+        margin-bottom: 0;
+    }
+    .gridster-item {
+        border: 1px solid #ccc;
+    }
+</style>
+

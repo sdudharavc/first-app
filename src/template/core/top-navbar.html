@@ -1,0 +1,29 @@
+<nav role="navigation" class="navbar topnavbar" ng-if="!$state.includes('login') && !$state.includes('settingdb')">
+   <div class="navbar-header">
+      <a  class="navbar-brand">
+         <div class="brand-logo active" ><!-- ng-click="gotoDashboard()" -->
+            <img ng-src="img/logo.png" class="img-responsive" />
+         </div>
+      </a>
+   </div>
+   <div class="parent_menu">
+   <!-- 	<img src="img/user.png" class="pr_img" alt="profile_image"> -->
+   	<div class="drop_down_custom">
+   		
+   		<ul class="nav navbar-nav">
+	        <li class="dropdown">
+	          <a  class="dropdown-toggle name_desc" data-toggle="dropdown"><img src="img/user.png" class="pr_img" alt="profile_image"> &nbsp;{{username}} <b class="caret"></b></a>
+	          <ul class="dropdown-menu">
+	          	<li><a ng-click="goToDashboard()" ng-class="{'stSideMenuActive' : $state.includes('dashboard') }"><i class="fa fa-tasks iconHoverTopbarMarginFirst"></i>Dashboard</a> </li>
+	          	<li><a ng-click="goToRackElevation()" ng-class="{'stSideMenuActive' : $state.includes('rackelevation') }"><i class="fa fa-tasks iconHoverTopbarMarginFirst"></i>Rack Elevation</a> </li>
+	          	<li><a ng-click="goToReport()" ng-class="{'stSideMenuActive' : $state.includes('report') }"><i class="fa fa-tasks iconHoverTopbarMarginFirst" ></i>Report</a> </li>
+	         	<li><a ng-click="aboutPopup()"><i class="fa fa-info iconHoverTopbarMargin"></i>About</a> </li>
+	         	<li><a ng-click="goToSetting()" ng-class="{'stSideMenuActive' : $state.includes('setting') }"><i class="glyphicon glyphicon-cog iconHoverTopbarMarginFirst" ></i>Setting</a> </li>
+	            <li><a ng-click="logout()"><i class="glyphicon glyphicon-log-out iconHoverTopbarMargin" ></i>Logout</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+   	</div>
+   </div>
+</nav>
+

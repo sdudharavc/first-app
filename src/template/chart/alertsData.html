@@ -1,0 +1,29 @@
+<div ng-controller="DashboardCtrl" ng-class="{'alertWidthcontrol' :action.sizeY ==1 || action.sizeY==2, 
+	'alertWidthcontrolUndo':action.sizeY !==1 && action.sizeY!==2}"  class="container1 block-center alert-buttons-container">
+          <div class="helper">
+              <ul class="con" ng-class="{'alertButton': action.sizeX==2 || action.sizeX==1 }">
+                  <li>
+                   	 	<button type="button" ng-click="goTo('critical', action)" id="alert1" data-loading-text="Loading..." class="btn btn-primary alert-button" autocomplete="off">
+					        <i class="fa fa-bell-o" aria-hidden="true"></i>
+					        Critical Alert
+					        <span class="alert-count">{{action.data.countCriticalAlertData}}</span>
+			    		</button>
+		
+					    <button type="button" ng-click="goTo('warning', action)" id="alert2" data-loading-text="Loading..." class="btn btn-primary alert-button" autocomplete="off">
+					        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+					        Warning Alert
+					        <span class="alert-count">{{action.data.countWarningAlertData}}</span>
+					    </button>
+					
+					    <button type="button" ng-click="goTo('fail', action)" id="alert3" data-loading-text="Loading..." class="btn btn-primary alert-button" autocomplete="off">
+					        <i class="fa fa-bell-o" aria-hidden="true"></i>
+					        Fail Over Alert<span class="alert-count">{{action.data.countFailAlertData}}</span>
+					    </button>
+					    <button type="button" ng-click="goTo('inventory', action)" id="alert4" data-loading-text="Loading..." class="btn btn-primary alert-button" autocomplete="off">
+					        <i class="fa fa-bell-o" aria-hidden="true"></i>
+					        Inventory Alert<span class="alert-count">{{action.data.countInventoryAlertData}}</span>
+					    </button>
+                  </li>
+              </ul>
+          </div>
+</div>

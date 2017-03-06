@@ -1,0 +1,113 @@
+<div>
+    <div class="widget-poups">
+        <form name="pueHistory" class="form-horizontal" enctype="multipart/form-data" novalidate>
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+                <h3>Widget Settings</h3>
+            </div>
+
+            <div class="modal-body">
+                 <div class="col-lg-12 col-md-12">
+	                <div class="form-group" ng-class="{error: pueHistory.name.$error && pueHistory.submitted}">
+	                    <label class="control-label col-lg-3 col-md-3 col-sm-3">Title</label>
+	                    <div class="col-lg-9 col-md-9 col-sm-9">
+	                        <input name="name" type="text" ng-model="form.name" maxlength="45" placeholder="Title*" class="form-control" required/>
+	                    </div>
+	                </div>
+	               </div>
+	               <div class="col-lg-12 col-md-12">
+	                 <div class="form-group" ng-class="{error: pueHistory.widgetname.$error && pueHistory.submitted}">
+	                    <label class="control-label col-lg-3 col-md-3 col-sm-3">Sub title</label>
+	                    <div class="col-lg-9 col-md-9 col-sm-9">
+	                        <input name="widgetName" type="text" ng-model="form.widgetname" placeholder="Sub title*" maxlength="45" class="form-control" required/>
+	                    </div>
+	                </div>
+	            </div>
+	            <div ng-repeat="choice in choices">
+	                <div class="col-lg-12 col-md-12">
+	                    <div class="form-group" ng-class="{error: pueHistory.formula.$error && pueHistory.submitted}">
+	                        <label class="control-label col-lg-3 col-md-3 col-sm-3">Formula {{choice.id}}</label>
+	                        <div ng-class="{'col-lg-8 col-md-8 col-sm-8' :$last , 'col-lg-9 col-md-9 col-sm-9' :!$last }">
+	                            <select name="formula" ng-model="choice.formula" class="form-control" required
+	                                    ng-options="formula.FormulaTitle for formula in choice.form.formula track by formula.FormulaId">
+	                                <option disabled value="">None*</option>
+	                            </select>
+	                        </div>
+	                        <div class="col-lg-1 col-md-1 col-sm-1 wsDisplayFlex">
+	                        	<a class="wsSelectIconAdd" ng-if="$last && !$first" ng-click="removeChoice(choice.id)"><i class="fa fa-minus-circle"></i></a>
+	                        	<a class="wsSelectIconAdd wsSettingIconMargin" ng-if="$last" ng-click="addNewChoice()"><i class="fa fa-plus"></i></a>
+	                        </div>
+	                    </div>
+	                </div>
+                </div>
+                
+                 <div class="col-lg-12 col-md-12">
+                     <div class="form-group" ng-class="{error: _form.datatype.$error && _form.submitted}">
+                         <label class="control-label col-lg-3 col-md-3 col-sm-3">Value</label>
+                         <div class="col-lg-9 col-md-9 col-sm-9" ng-class="{'wsChangeDropDownPosition': data.datatype == 'Average' || data.datatype == 'Minimum' || 
+                        	data.datatype == 'Maximum'}">
+                             <select name="datatype" ng-model="data.datatype" class="form-control" required
+                                 ng-options="d for d in form.datatype | orderBy:'d'" ng-class="{'wsDropdownChangeWidth': data.datatype == 'Average' || data.datatype == 'Minimum' || 
+                        			data.datatype == 'Maximum'}">
+                                 <option disabled value="">None*</option>
+                             </select>
+                             <div class="col-lg-6 col-md-6 col-sm-6">
+	                             <select name="subdatatype" ng-model="data.subdatatype" class="form-control" required ng-if="data.datatype == 'Average' || data.datatype == 'Minimum' || 
+                        				data.datatype == 'Maximum'" ng-options="d for d in form.subdatatype | orderBy:'d'">
+	                                 <option disabled value="">None*</option>
+	                             </select>
+                         	 </div>
+                         </div>
+                     </div>
+			</div> 
+                
+                 <div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+	                 <div class="form-group" ng-class="{error: _form.days.$error && _form.submitted}">
+	                     <label class="control-label col-lg-3 col-md-3 col-sm-3">No. of days from today</label>
+	                     <div class="col-lg-9 col-md-9 col-sm-9">     
+					 		<input name="days" type="number" oninput="if(value.length>5)value=value.slice(0,5)" ng-model="data.days" ng-change="datePickerChange(data.days)" 
+					 			placeholder="Days" class="form-control" no-special-char/>
+	                     </div>
+	                 </div>
+	             </div>
+	         	
+	         	<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+	                 <div class="form-group" ng-class="{error: _form.daterange.$error && _form.submitted}">
+	                     <label class="control-label col-lg-3 col-md-3 col-sm-3">Date Range</label>
+	                     <div class="col-lg-9 col-md-9 col-sm-9">     
+							<input type="text" name="daterange" required ng-model="data.dateRange" placeholder="Choose date*"/>
+	                     </div>
+	                 </div>
+	             </div>
+	             
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group" ng-class="{error: pueHistory.UpdateIntervalArray.$error && pueHistory.submitted}">
+                        <label class="control-label col-lg-3 col-md-3 col-sm-3">Update Interval</label>
+                        <div class="col-lg-9 col-md-9 col-sm-9" ng-class="{'wsChangeDropDownPosition': data.updateInterval == 'Hour' || data.updateInterval == 'Minute' || 
+                        	data.updateInterval == 'Second'}">
+                            <select name="UpdateIntervalArray" ng-model="data.updateInterval" class="form-control" required
+                                    ng-options="d for d in form.updateInterval | orderBy:'d'" ng-class="{'wsDropdownChangeWidth': data.updateInterval == 'Hour'  || 
+                                    data.updateInterval == 'Minute' || data.updateInterval == 'Second'}">
+                                <option disabled value="">None*</option>
+                            </select>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input name="time" ng-model="form.time" class="form-control"  placeholder="time*" ng-if="data.updateInterval == 'Hour'  || 
+                                data.updateInterval == 'Minute' || data.updateInterval == 'Second'" type="number" oninput="if(value.length>5)value=value.slice(0,5)"
+                                ng-min="(data.updateInterval == 'Second') ? 10 : 1" required no-special-char/>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+            </div>
+            <div class="modal-footer">
+                <!--<a ng-click="remove()" class="btn btn-danger pull-left buttonColor" tabindex="-1"><i class="glyphicon glyphicon-trash"></i>Delete</a>-->
+                <a ng-click="dismiss()" class="btn btn-default buttonColor" tabindex="-1">
+                    <i class="glyphicon glyphicon-remove"></i>Cancel</a>
+                <a type="submit" class="btn btn-default buttonColor" ng-click="SaveSettingForWidget(data,pueHistory)">
+                    <i class="glyphicon glyphicon-ok"></i>Save</a>
+            </div>
+        </form>
+    </div>
+</div>
+

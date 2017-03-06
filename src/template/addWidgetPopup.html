@@ -1,0 +1,45 @@
+<div id="widget-model" class="widget-poups">
+<div class="modal-header">
+	<div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+   	<h3>Add Widget</h3>
+</div>
+<div ng-controller="DashboardCtrl" class="modal-body" style="padding:10px 0;">
+              <!-- START panel-->
+              <div class="" style="padding:0">
+                        <ul class="nav nav-tabs">
+                            <li style="width:33.3%;" class="{{(tabshow == 1?'active':'')}}"><a href="javascript:;" ng-click="tabshow = 1" style="border-right:none">Charts</a></li>
+                            <li style="width:33.3%;" class="{{(tabshow == 2?'active':'')}}"><a  href="javascript:;" ng-click="tabshow = 2" style="border-right:none">Gauges</a></li>
+                            <li style="width:33.3%;" class="{{(tabshow == 3?'active':'')}}"><a  href="javascript:;" ng-click="tabshow = 3" style="border-right:none">Others</a></li>
+                        </ul>
+              </div>
+            <div class="col-md-9 adwTab" ng-scrollbars> 
+                <div class="tab-pane" ng-if="tabshow == 1">
+                	<div ng-repeat="widget in charts | orderBy:'name'" class="adwTabElement">
+                		<img class="addWidgetTabIcon" ng-click="addwidget(widget.id,item.selected)" ng-src="img/widgetIcon/{{widget.jsfunctionname}}.png" />
+                        <lable>{{widget.name}}</label>
+                        <button class="pull-right adwButton" ng-click="addwidget(widget.id,item.selected)">Add</button>
+                    </div>
+                </div>
+            <div class="tab-pane" ng-if="tabshow == 2">
+            	<div ng-repeat="widget in gauges | orderBy:'name'" class="adwTabElement">
+                		<img class="addWidgetTabIcon" ng-click="addwidget(widget.id,item.selected)" ng-src="img/widgetIcon/{{widget.jsfunctionname}}.png" />
+                        <lable>{{widget.name}}</label>
+                        <button class="pull-right adwButton" ng-click="addwidget(widget.id,item.selected)">Add</button>
+                </div>
+            </div>
+            <div class="tab-pane"  ng-if="tabshow == 3">
+				<div ng-repeat="widget in others | orderBy:'name'" class="adwTabElement">
+                		<img class="addWidgetTabIcon" ng-click="addwidget(widget.id,item.selected)" ng-src="img/widgetIcon/{{widget.jsfunctionname}}.png" />
+                        <lable>{{widget.name}}</label>
+                        <button class="pull-right adwButton" ng-click="addwidget(widget.id,item.selected)">Add</button>
+                </div>
+			</div>
+            </div> 
+            <div class="clearfix"></div>
+ 
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary buttonColor" ng-click="ok()">Close</button>
+   <!--  <button class="btn btn-warning buttonColor" ng-click="cancel()">Cancel</button> -->
+</div>
+</div>

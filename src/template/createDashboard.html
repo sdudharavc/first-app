@@ -1,0 +1,15 @@
+<div class="widget-poups add-pop-up">
+        <div class="modal-header">
+          <div class="pv">  <h3 id="myModalLabel" class="modal-title">Create Dashboard</h3><div class="close-button" style="top:20px" ng-click="cancel()" aria-hidden="true">&times;</div></div>
+        </div>
+        <form>
+            <div class="modal-body"><input type="text" placeholder="Enter Dashboard name*" name="txtDashName" class="form-control" ng-model='data.txtDashName' maxlength="25"/>  </div>
+            <div class="gdb-data-table">
+				<kendo-grid options="gridOptionsForCreateDashboard" class="gridKendoForAllMain"></kendo-grid>
+			</div>
+        </form>
+        <div class="modal-footer">
+	        <button ng-click="createNewDashboard(data)" class="btn btn-primary buttonColor">OK</button>
+	        <button ng-click="cancel()" class="btn btn-warning buttonColor">Cancel</button>
+        </div>
+</div>

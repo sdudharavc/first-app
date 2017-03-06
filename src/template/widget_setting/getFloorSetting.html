@@ -1,0 +1,78 @@
+<div>
+    <div class="widget-poups">
+        <form name="_form" novalidate class="form-horizontal">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="dismiss()" aria-hidden="true">&times;</button>
+                <h3>Widget Settings</h3>
+            </div>
+
+            <div class="modal-body clearfix">
+                 <div class="col-lg-12 col-md-12">
+	                <div class="form-group" ng-class="{error: _form.name.$error && _form.submitted}">
+	                    <label class="control-label col-lg-3 col-md-3 col-sm-3">Title</label>
+	                    <div class="col-lg-9 col-md-9 col-sm-9">
+	                        <input name="name" type="text" ng-model="form.name" maxlength="45" placeholder="Title*" class="form-control" required/>
+	                    </div>
+	                </div>
+	               </div>
+	               <div class="col-lg-12 col-md-12">
+	                 <div class="form-group" ng-class="{error: _form.widgetname.$error && _form.submitted}">
+	                    <label class="control-label col-lg-3 col-md-3 col-sm-3">Sub title</label>
+	                    <div class="col-lg-9 col-md-9 col-sm-9">
+	                        <input name="widgetName" type="text" ng-model="form.widgetname" placeholder="Sub title*" maxlength="45" class="form-control" required/>
+	                    </div>
+	                </div>
+	            </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group" ng-class="{error: _form.datacenter.$error && _form.submitted}">
+                        <label class="control-label col-lg-3 col-md-3 col-sm-3">Data center</label>
+                        <div class="col-lg-9 col-md-9 col-sm-9">
+                            <select name="datacenter" ng-model="data.datacenter" class="form-control" required
+                                    ng-options="dc.DCName for dc in form.datacenter track by dc.DCKey " ng-change="getFloor(data.datacenter)">
+                                <option value="">None*</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group" ng-class="{error: _form.floor.$error && _form.submitted}">
+                        <label class="control-label col-lg-3 col-md-3 col-sm-3">Floor</label>
+                        <div class="col-lg-9 col-md-9 col-sm-9">
+                            <select name="floor" ng-model="data.floor" class="form-control" required
+                                    ng-options="floor.FloorName for floor in form.floorlist track by floor.FloorKey">
+                                <option value="">None*</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group" ng-class="{error: _form.UpdateIntervalArray.$error && _form.submitted}">
+                        <label class="control-label col-lg-3 col-md-3 col-sm-3">Update Interval</label>
+                        <div class="col-lg-9 col-md-9 col-sm-9" ng-class="{'wsChangeDropDownPosition': data.updateInterval == 'Hour' || data.updateInterval == 'Second' || 
+                        	data.updateInterval == 'Minute'}">
+                            <select name="UpdateIntervalArray" ng-model="data.updateInterval" class="form-control" required
+                                    ng-options="d for d in form.updateInterval | orderBy:'d'" ng-class="{'wsDropdownChangeWidth': data.updateInterval == 'Hour' || 
+                                    data.updateInterval == 'Second' || data.updateInterval == 'Minute'}">
+                                <option value="">None*</option>
+                            </select>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <input name="time" ng-model="form.time" class="form-control" placeholder="time*" ng-if="data.updateInterval == 'Hour' || 
+                                	data.updateInterval == 'Second' || data.updateInterval == 'Minute'" type="number" oninput="if(value.length>5)value=value.slice(0,5)"
+                                	ng-min="(data.updateInterval == 'Second') ? 10 : 1" required no-special-char disabled/>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <div class="modal-footer">
+                <!--<a ng-click="remove()" class="btn btn-danger pull-left buttonColor" tabindex="-1"><i class="glyphicon glyphicon-trash"></i>Delete</a>-->
+                <a ng-click="dismiss()" class="btn btn-default buttonColor" tabindex="-1">
+                    <i class="glyphicon glyphicon-remove"></i>Cancel</a>
+                <a type="submit" class="btn btn-default buttonColor" ng-click="SaveSettingForWidget(data, _form)">
+                    <i class="glyphicon glyphicon-ok"></i>Save</a>
+            </div>
+        </form>
+    </div>
+</div>

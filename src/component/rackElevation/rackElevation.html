@@ -1,0 +1,328 @@
+<body>
+<spinner name="html5spinnerRackElevation" ng-cloak="">
+    <div class="overlaySettingDb"></div>
+    <div class="spinner">
+        <div class="double-bounce1"></div> 
+        <div class="double-bounce2"></div>
+    </div>
+    <div class="please-wait">Please Wait...</div>
+</spinner>
+<section class="super-dashboard-header" ng-if="!configureCabinet">
+    <div class="dashboard-heading">
+        <h2>Super Dashboard</h2>
+    </div>
+    <div class="dashboard-icons">
+        <ul>
+            <li><img src="images/icon1.png" /></li>
+            <li><img src="images/icon2.png" /></li>
+            <li><img src="images/icon2.png" /></li>
+            <li ng-controller="CustomWidgetCtrl"><img src="images/icon4.png" ng-click="openSettings(widget)"/></li>
+        </ul>
+    </div>
+    <div class="dashboard-details pull-right">
+        <div class="dashboard-detail-block">
+            <span class="dashboard-detail-title">Date:</span>
+            <span class="dashboard-detail-content">1/1/2017</span>
+        </div>
+        <div class="dashboard-detail-block">
+            <span class="dashboard-detail-title">Time:</span>
+            <span class="dashboard-detail-content">12:00 PM</span>
+        </div>
+        <div class="dashboard-detail-block">
+            <span class="dashboard-detail-title">Location:</span>
+            <span class="dashboard-detail-content">USA</span>
+        </div>
+        <div class="dashboard-detail-block">
+            <span class="dashboard-detail-title">Weather:</span>
+            <span class="dashboard-detail-content">31 C</span>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</section>
+<section class="rack-slider" ng-if="!configureCabinet">
+
+    <div class="col-md-12 padding-none" style="text-align: center">
+        <span ng-if="cabinetIndex != 0"class="prev-arrow"><a href="javascript:;" ng-click="handleCabinetSlider('P')"><span class="glyphicon glyphicon-menu-left"></span></a></span>
+        <div class="slider-content">{{cabinetList[cabinetIndex].CabinetName}}</div>
+        <span ng-if="cabintListCount >= cabinetIndex" class="prev-arrow"><a href="javascript:;" ng-click="handleCabinetSlider('N')"><span class="glyphicon glyphicon-menu-right"></span></a></span>
+    </div>
+</section >
+<section class="rack-content-section clearfix" ng-if="!configureCabinet">
+    <div class="sidenav re-left-main" ng-class="{'slide-left' : sliderActive}">
+        <a class="side-tog new-tog" href="javascript:;" ng-click="sliderActive = !sliderActive"></a>
+    </div>
+    <div class="re-right-main" ng-class="{'block_full' : sliderActive}">
+        <div class="box1">
+            <div class="main-rack-block">
+                <div class="rack-edit-section clearfix">
+                    <div class="front-rev-buttons">
+                        <ul >
+                            <li>
+                                <input type="radio" id="f-option" ng-model="frontRear"  ng-click="handleRearFront('rear')" value="rear">
+                                <label for="f-option">Rear</label>
+                                <div class="check"></div>
+                            </li>
+                            <li>
+                                <input type="radio" id="s-option" ng-model="frontRear" ng-click="handleRearFront('front')" value="front">
+                                <label for="s-option">Front</label>
+                                <div class="check">
+                                    <div class="inside"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rack-edit-section-buttions">
+                        <ul>
+                            <li><i class="fa fa-file-text-o"></i></li>
+                            <li><i class="fa fa-info-circle"></i></li>
+                        </ul>
+                    </div>
+                    <div class="rack-selectbox">
+                        <select>
+                            <option ng-repeat="visible in visibility" value="">{{visibility[index + 1]}}</option>
+                            <!--                                <option>Un Visibility</option>
+                                                            <option>Visibility</option>
+                                                            <option>Visibility</option>-->
+                        </select>
+                    </div>
+                    <div class="rack-lock">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="rack-table">
+                    <div class="ht-box" style="top:{{sensorTop}}" ng-repeat="sensor in sensorData">
+                        {{(sensor.Value > 0)?sensor.Value:0}}<sub class="gren">F</sub>
+                    </div>
+                    <!--                        <div class="ht-box">
+                                                68.68<sub class="gren">F</sub>
+                                            </div>
+                                            <div class="ht-box">
+                                                58.68<sub class="gren">F</sub>
+                                            </div>
+                                            <div class="ht-box">
+                                                48.68<sub class="gren">F</sub>
+                                            </div>
+                                            <div class="ht-box">
+                                                38.68<sub class="yellow">%</sub>
+                                            </div>
+                                            <div class="ht-box">
+                                                28.68<sub class="red">CFM</sub>
+                                            </div>-->
+                    <table>
+                        <tr>
+                            <td class="rack-sidebars"></td>
+                            <td class="rack-top"><span class="rack-title">Rear Side</span></td>
+                            <td class="rack-top"></td>
+                            <td class="rack-sidebars"></td>
+                            <td class="rack-device-detail"></td>
+                        </tr>
+                        <!--                             <tr ng-repeat="n in [] | range:rackElevationdata[0].totalNoRackSlot | reverseAnything">
+                                                        <td class="left-side-rack resBorderForNG" ng-bind="(n+1)+'u'"></td>
+                                                        <td class="center-rack"><img ng-src="{{rackElevationdata[0].img[n+1]}}" style="position:absolute;" ng-style="rackElevationdata[0].style[n+1]"/></td>
+                                                        <td class="right-side-rack resBorderForNG" ng-bind="(n+1)+'u'"></td>
+                                                        <td class="get-Device-name"></td>
+                                                         <td class="rack-device-detail" rowspan="3">- DEVICE 37</td>
+                                                    </tr> -->
+
+                        <tr ng-repeat="n in []| range:rackElevationdata[0].totalNoRackSlot | reverseAnything">
+
+                            <td ng-style="rackElevationdata[0].style[n]" class="rack-sidebars"></td>
+                            <td class="rack-middle" ng-if="n % 6 == 0" td-ip="{{n}}" style="position:{{(rackElevationdata[0].viewImg.img[n]!=null)?'relative':''}}">
+
+
+
+
+                                <!--<p ng-if="n%6==0" gg="{{n/6}}" style="color: red">ssss</p>-->
+                                <span class="dyna" style="z-index: 2;height:{{rackElevationdata[0].viewImg.style[n]}}px;background-color:rgb({{rackElevationdata[0].viewImg.color[n]}})">
+
+                                </span>
+
+                                <img  ng-src="{{rackElevationdata[0].viewImg.img[n]}}" null-data="{{n}}" style="top:0;position:absolute;z-index: 1;height:{{rackElevationdata[0].viewImg.style[n]}}px;" ng-style="rackElevationdata[0].viewImg.style[n]" />
+                                <span class="rack_text_parent" style="height:{{rackElevationdata[0].viewImg.style[n]}}px;">
+                                    <span class="rack_text">{{rackElevationdata[0].viewImg.device[n]}}  
+                                        <span class="child_rack">
+                                            <span><a href="javascript:;">123456</a></span>
+                                            <span><a href="javascript:;">123456</a></span>
+                                            <span><a href="javascript:;">123456</a></span>
+                                            <span><a href="javascript:;">123456</a></span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td class="device-percentage" ng-if="n % 6 == 0">
+                                <div class="pr-circle">
+                                    <div class="">
+                                        <div  style="width:100%;" class="completed-percentage {{colorArray[rackColor[n / 6]]}}"></div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="rack-sidebars" ng-if="n % 6 == 0"><span class="rack-count" ng-bind="((n / 6) + 1) + 'u'"></span></td>
+                            <td class="rack-device-detail" chec-daaa="{{n}}" ng-if="n % 6 == 0"></td>
+
+                        </tr>
+                        <tr>
+                            <td class="rack-sidebars"></td>
+                            <td class="rack-middle rack-bottom"></td>
+                            <td class="device-percentage">
+                            </td>
+                            <td class="rack-sidebars"><span class="rack-count"></span></td>
+                            <td class="rack-device-detail"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="rack-table-deatails">
+                    <h2>{{cabinetList[cabinetIndex].CabinetName}}</h2>
+                    <span>Devices Properties & history on click of device</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="box2">
+            <div class="rack-acoordians">
+                <div class="rack-selectbox">
+                    <select ng-model="selectedMetric" ng-change="changeMetric(selectedMetric)" ng-options="d.Metric as d.Metric for d in metricValue">
+                        <!--                            <option>Metric</option>
+                                                    <option>Metric</option>
+                                                    <option>Metric</option>-->
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="rack-plug-details">
+                <div class="panel-group" ng-repeat="metric in rackElevationdata[0].metricData.rpcDataArray" >
+                    <div class="panel panel-default">
+                        <div class="panel panel-default" ng-click="rpcCollapse(metric, $index)">
+                            <div class="panel-heading">
+                                <button type="button" >{{metric.rackDetail.rpc_name}}</button>
+                            </div>
+                            <div  class="panel-collapse collapse in" ng-if="metric.data">
+                                <div class="panel-body" ng-repeat="BreakerData in metric">
+                                    <table>
+                                        <tr ng-repeat="outlet in BreakerData.Breaker.outletDetail">
+                                            <td class="re-td1"><img ng-src="{{outlet.Color == 'G'?'images/green-pl.png':(outlet.Color == 'R' ? 'images/red-pl.png':'images/yellow-pl.png')}}" /></td>
+                                            <td  ng-if="metricShow == 1" class="re-td2">{{outlet.Value}}</td>
+                                            <td  ng-if="metricShow == 2" class="re-td2">{{outlet.Amps}}</td>
+                                            <td  ng-if="metricShow == 3" class="re-td2">{{outlet.VoltAmps}}</td>
+                                            <td  ng-if="metricShow == 4" class="re-td2">{{outlet.Volts}}</td>
+                                            <td  ng-if="metricShow == 5" class="re-td3">{{outlet.MaxAmps}}</td>
+                                            <td class="re-td3">{{outlet.out_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="re-td1"><img src="images/pl-hed.png" /></td>
+                                            <td class="re-td2"></td>
+                                            <td class="re-td3">{{BreakerData.Breaker.breakerDetail.brk_name}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+        </div>
+        <div class="box3">
+            <div class="detail-box">
+                <h2>Cabinet Detail:</h2>
+                <div class="short-tbl"> 
+                    <!-- <a href="javascript:;" class="opn-short"><img src="images/srt-arrow.png" /></a> -->
+                    <table>
+                        <tr>
+                            <td>Site :</td>
+                            <td ng-bind="rackDetail.siteDetail[0].SiteName"></td>
+                        </tr>
+                        <tr>
+                            <td>Data Center :</td>
+                            <td ng-bind="rackDetail.siteDetail[0].DCName"></td>
+                        </tr>
+                        <tr>
+                            <td>Floor Plan :</td>
+                            <td ng-bind="rackDetail.siteDetail[0].FloorName"></td>
+                        </tr>
+                        <tr>
+                            <td>Modified Date :</td>
+                            <!--<td ng-bind="rackDetail.siteDetail[0].LastModifiedDate | changeDateToUTC)"></td>--> 
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="detail-box">
+                <h2>Matric Detail:</h2>
+                <table>
+                    <tr ng-repeat="metricVal in action.data.rackMetricValues">
+                        <td ng-bind="(metricVal.Metric)+' :'"></td>
+                        <td ng-bind="(metricVal.MetricValue | number:1) + (metricVal.type)"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+            <div class="not-box clearfix">
+                <div class="box-top">
+                    <div class="temp">
+                        <div class="img-box">
+                            <span class="green"><sup>{{rackDetail.TempValues[0].MetricValue}}</sup> {{rackDetail.TempValues[0].type}}</span>
+                            <img src="images/green-btl.png" />
+                        </div>
+                        <h5>Temperature</h5>
+                    </div>
+                    <div class="humdut">
+                        <div class="img-box">
+                            <span class="blue">40</span>
+                            <img src="images/tip.png" />
+                        </div>
+                        <h5>Humdutity</h5>
+                    </div>
+                    <div class="cooling">
+                        <div class="img-box">
+                            <span class="yellow">30</span>
+                            <img src="images/yel-fan.png" />
+                        </div>
+                        <h5>Cooling</h5>
+                    </div>
+                    <div class="altr">
+                        <div class="img-box">
+                            <span class="altr-lbl">Alert</span>
+                        </div>
+                        <h5></h5>
+                    </div>
+                    <div class="notif">
+                        <div class="img-box">
+                            <span class="red">20</span>
+                            <img src="images/red-bell.png" />
+                        </div>
+                        <h5></h5>
+                        <a href="javascript:;" class="not-popup-btn"><img src="images/srt-arrow.png"></a>
+                    </div>
+                    <div class="device-cont">
+                        <div class="img-box">
+                            <img src="images/con-btn.png" />
+                        </div>
+                        <h5>Device history</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="gauge-widget">
+                <img src="images/pg.png">
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<div ng-controller="CustomWidgetCtrl" ng-if="configureCabinet"  class="gridsterNoDataFound grid navBarText block-center" 
+     ><div class="noDataFound gridSetButtonColor" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i>Configure Widget</div>
+</div>
+
+<script>
+    $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    if (scroll >= 100) {
+    $(".re-left-main").addClass("sticky");
+    } else {
+    $(".re-left-main").removeClass("sticky");
+    }
+    });
+</script>
+
+</body>

@@ -1,0 +1,123 @@
+<div ng-controller="DashboardCtrl" class="cabinets-container">
+    <div class="cabinets-types">
+        <ul>
+            <li>
+            	<span class="dot">
+            		<i class="fa fa-circle-o" aria-hidden="true"></i>
+            	</span>
+            	<span class="cabinets-title">Site Info</span>
+            </li>
+            <li>
+            	<span class="dot">
+            		<i class="fa fa-circle-o" aria-hidden="true"></i>
+            	</span>
+            	<span class="cabinets-title" 
+            		ng-bind="(action.data.cabinetSetting[action.childWidgets].datacenter.DCName ? action.data.cabinetSetting[action.childWidgets].datacenter.DCName : 'DC info')">
+            	</span>
+            </li>
+            <li>
+            	<span class="dot">
+            		<i class="fa fa-circle-o" aria-hidden="true"></i>
+            	</span>
+            	<span class="cabinets-title" 
+            		ng-bind="(action.data.cabinetSetting[action.childWidgets].floor.FloorName ?action.data.cabinetSetting[action.childWidgets].floor.FloorName : 'Floor info')">
+            	</span>
+           	</li>
+            <li class="active">
+            	<span class="dot">
+            		<i class="fa fa-circle-o" aria-hidden="true"></i>
+            	</span>
+            	<span class="cabinets-title" 
+            		ng-bind="(action.data.cabinetSetting[action.childWidgets].cabinet.CabinetName ? action.data.cabinetSetting[action.childWidgets].cabinet.CabinetName : 'Cabinet Info')">
+           		</span>
+            </li>
+        </ul>
+    </div>
+   <!--  <div class="clearfix"></div>
+    <div class="cabinets-header block-center" ng-bind="(action.data.cabinet[action.childWidgets].Org_type) +' : '+ (action.data.cabinet[action.childWidgets].Org_name)"></div> -->
+    <div class="cabinet-property-list">
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+            	<span class="list-icon">
+            		<img src="img/chartDesign/i1.png" />
+            	</span>
+            	<span class="list-content"></span>KWH
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].KVALive ? (action.data.cabinet[action.childWidgets].KVALive| number:1) : '-')"></span>
+            </div>
+        </div>
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+            	<span class="list-icon">
+            		<img src="img/chartDesign/i2.png" />
+            	</span>
+            	<span class="list-content"></span>Amps
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].AmpsLive ? (action.data.cabinet[action.childWidgets].AmpsLive | number:1) : '-')"></span>
+            </div>
+        </div>
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+            	<span class="list-icon">
+            		<img src="img/chartDesign/i3.png" />
+            	</span>
+            	<span class="list-content"></span>Volts
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].VoltsLive ? (action.data.cabinet[action.childWidgets].VoltsLive | number:1) : '-')"></span>
+            </div>
+        </div>
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+            	<span class="list-icon">
+            		<img src="img/chartDesign/i4.png" />
+            	</span>
+            	<span class="list-content"></span>PowerFactor
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].EfficiencyLive ? (action.data.cabinet[action.childWidgets].EfficiencyLive | number:1) : '-')"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cabinet-property-list gray-bg">
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+            	<span class="list-icon">
+            		<img src="img/chartDesign/airflow.png" />
+            	</span>
+            	<span class="list-content"></span>Airflow
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].AirFlowLive ? (action.data.cabinet[action.childWidgets].AirFlowLive | number:1) : '-')"></span>
+            </div>
+        </div>
+        <!-- <div class="cabinet-property-block">
+            <div class="align-left cabinet-block"><span class="list-icon"><img src="img/chartDesign/cooling.png" /></span><span class="list-content"></span>Cooling</div>
+            <div class="align-right cabinet-block-right"><span class="list-content">-</span></div>
+        </div> -->
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+	            <span class="list-icon">
+	            	<img src="img/chartDesign/humidity.png" />
+	            </span>
+	            <span class="list-content"></span>Humidity
+            </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].HumidityLive ? (action.data.cabinet[action.childWidgets].HumidityLive | number:1) : '-')"></span>
+            </div>
+        </div>
+        <div class="cabinet-property-block">
+            <div class="align-left cabinet-block">
+	            <span class="list-icon">
+            		<img src="img/chartDesign/temperature.png" />
+	            </span>
+	            <span class="list-content"></span>Temperature
+	        </div>
+            <div class="align-right cabinet-block-right">
+            	<span class="list-content" ng-bind="(action.data.cabinet[action.childWidgets].TemperatureLive ? (action.data.cabinet[action.childWidgets].TemperatureLive | number:1) : '-')"></span>
+            </div>
+        </div>
+    </div>
+</div>

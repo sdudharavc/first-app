@@ -1,0 +1,13 @@
+<div class="gdb-data-table">
+	<div class="modal-header">
+	    <div class="close-button" ng-click="gridClose()" data-dismiss="modal" aria-hidden="true">&times;</div>
+		<h3 ng-bind="widgetGridName.name"></h3>
+	</div>
+	<!-- <div ng-if="gridForPowerMetric.data.length>0" ui-grid="gridForPowerMetric" class="gridSetting grid" ui-grid-pagination ui-grid-exporter ui-grid-resize-columns ui-grid-grouping></div>
+	<div ng-if="!gridForPowerMetric.data.length>0"  class="gridsterNoDataFoundForAlert grid navBarText block-center">
+		<div class="noDataFound">No data found</div>
+	</div> -->
+	
+	<kendo-grid options="gridDataForWidgets" class="gridKendoForAllMain"></kendo-grid>
+</div>
+

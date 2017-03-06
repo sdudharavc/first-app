@@ -1,0 +1,167 @@
+<div class="sidenav re-left-main" ng-class="{'slide-left' : sliderActive}">
+	<a ng-click="gotoDashboard();sliderActive = !sliderActive" ng-class="{'stSideMenuActive' : currentTab=='dashboard'}">Dashboard</a>
+	<a ng-click="gotoDbList();sliderActive = !sliderActive"    ng-class="{'stSideMenuActive' : currentTab=='dblist'}">Database Connections</a>
+	<a ng-click="gotoWidgetSetting();sliderActive = !sliderActive" ng-class="{'stSideMenuActive' : currentTab=='widgetsetting'}">Widget UI Settings</a>
+	<a ng-if="dashboardAdminSettingListForTab" ng-click="gotoDashboardAdminSetting(true)" ng-class="{'stSideMenuActive' : currentTab=='dashboardadminsetting'}">Dashboard Permissions</a>
+	<a ng-click="gotoDashboardSetting();sliderActive = !sliderActive" ng-class="{'stSideMenuActive' : currentTab=='dashboardSetting'}">Dashboard Settings</a>
+	<!-- <a href="gotoAbout()" ng-class="{'stSideMenuActive' : currentTab=='dashboard'}">Pre defined Dashboard</a> -->
+	<a ng-click="gotoAbout();sliderActive = !sliderActive" ng-class="{'stSideMenuActive' : currentTab=='about'}">About</a>
+    <a class="side-tog new-tog" href="javascript:;" ng-click="sliderActive = !sliderActive"></a>
+</div>
+<spinner name="html5spinnerSettting" ng-cloak="">
+		<div class="overlaySettingDb"></div>
+			<div class="spinner">
+			<div class="double-bounce1"></div> 
+			<div class="double-bounce2"></div>
+		</div>
+		<div class="please-wait">Please Wait...</div>
+</spinner>
+<div class="re-right-main custom_reright" ng-class="{'block_full' : sliderActive}">
+<form role="form" name="form" novalidate class="form-validate mb-lg stForm">
+	<div ng-if="currentTab=='dblist'">
+		<div class="text-center pv stHeadingBottom"><h3>Database Connections</h3>
+			<!-- <div class="align-right addDbButton">
+				  <a type="button" class="btn buttonColor" ng-click="addDbPopup()">ADD</a>
+			</div> -->
+		</div>
+		<div class="gdb-data-table">
+			<kendo-grid options="gridOptions" class="gridKendoForAllMain" ng-if="dashboardListLength"></kendo-grid>
+		</div>
+	 	<div ng-if="!dashboardListLength"  class="gridsterNoDataFound grid navBarText block-center">
+	 		<div class="noDataFound">No database available</div>
+	 	</div>
+ 	</div>
+ 	
+ 	<div ng-if="currentTab=='widgetsetting'">
+		<div class="text-center pv stHeadingBottom"><h3>Widget UI Settings</h3></div>
+		<div class="gdb-data-table">
+			<kendo-grid options="gridOptionsForWidget" class="gridKendoForAllMain" ng-if="widgetListLength"></kendo-grid>
+		</div>
+	 	<div ng-if="!widgetListLength"  class="gridsterNoDataFound grid navBarText block-center">
+	 		<div class="noDataFound">No widget available</div>
+	 	</div>
+ 	</div>
+ 	
+ 	<div ng-if="currentTab=='dashboardadminsetting'">
+		<div class="text-center pv stHeadingBottom"><h3>Dashboard Permissions</h3></div>
+		<div class="align-right addDbButton" >
+			  <a ng-if="dashboardAdminSettingList" type="button" class="btn buttonColor" ng-click="updateDashboardAdmin()">Update All</a>
+			   <a type="button" class="btn buttonColor" ng-click="addDashboardAdminUserPopup()">ADD</a>
+		</div>
+		<div class="gdb-data-table">
+			<kendo-grid options="gridOptionsForDashboardAdmin" class="gridKendoForAllMain" ng-if="dashboardAdminSettingList"></kendo-grid>
+		</div>
+	 	<div ng-if="!dashboardAdminSettingList"  class="gridsterNoDataFound grid navBarText block-center">
+	 		<div class="noDataFound">No dashboard available</div>
+	 	</div>
+ 	</div>
+ 	<div ng-if="currentTab=='dashboardSetting'">
+		
+		<div class="dashboard_setting_middle">
+		<div class="text-center pv stHeadingBottom"><h3>Dashboard Settings</h3></div>
+		<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+				<label class="control-label col-lg-3 col-md-3 col-sm-3 dotted_semicolon">Dashboard Interval  </label>
+				 <div class="col-lg-4 col-md-4 col-sm-4">
+					<select name="intervalDashboardType" ng-model="data.intervalDashboardType" class="form-control" required
+	                    	ng-options="d for d in intervalType | orderBy:'d'">
+	                    <option disabled value="">None</option>
+	                </select>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-3">     
+					<input name="dashboardInterval" type="number" min="0" oninput="if(value.length>5)value=value.slice(0,5)" ng-model="data.dashboardInterval" 
+						placeholder="in {{data.intervalDashboardType}}" class="form-control" required  no-special-char ng-min="(data.intervalDashboardType == 'Second') ? 20 : 1"/>
+				</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+				<label class="control-label col-lg-3 col-md-3 col-sm-3 dotted_semicolon">Alert Interval  </label>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<select name="intervalAlertType" ng-model="data.intervalAlertType" class="form-control" required
+	                    	ng-options="d for d in intervalType | orderBy:'d'">
+	                    <option disabled value="">None</option>
+	                </select>
+                </div>
+				<div class="col-lg-3 col-md-3 col-sm-3">     
+					<input name="alertInterval" type="number" min="0" no-special-char oninput="if(value.length>5)value=value.slice(0,5)" ng-model="data.alertInterval"
+						placeholder="in {{data.intervalAlertType}}" class="form-control" required ng-min="(data.intervalAlertType == 'Second') ? 20 : 1"/>
+				</div>
+		</div>
+		<div class="clearfix"></div>
+      	<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+				<label class="control-label col-lg-3 col-md-3 col-sm-3 dotted_semicolon">Time format  </label>
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<select name="timeFormat" ng-model="data.timeFormat" class="form-control" required
+	                    	ng-options="d for d in timeFormat | orderBy:'d'">
+	                    <option disabled value="">None</option>
+	                </select>
+                </div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+              <div class="form-group" ng-class="{error: _form.intervalDashboardModeForCrtical.$error && _form.submitted}">
+                  <label class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12 col-cc-mob dotted_semicolon">Alert Mode  </label>
+                  <div class="col-lg-5 col-md-5 col-xs-5 admin-check-boxes">
+                      
+                      <label for="intervalDashboardModeForCrtical" class="check-size cheked-color">
+		    			<input name="intervalDashboardModeForCrtical" id="intervalDashboardModeForCrtical" class="form-control text-left" type="checkbox" ng-model="data.intervalDashboardModeForCrtical"> 
+		    			<span class="ic"></span>
+		    		  </label>
+                  </div>
+              </div>
+      	</div>
+      	<div class="clearfix"></div>
+		<div class="col-lg-12 col-md-12 filtercheckBoxBodyTopmargin">
+			<div class="form-group" ng-class="{error: _form.intervalDashboardModeForCrtical.$error && _form.submitted}">	
+				<label class="control-label col-lg-3 col-md-3 col-sm-3 col-xs-12 col-cc-mob dotted_semicolon">Theme Option  </label>
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 admin-check-boxes">
+					<label for="blackWhite" class="check-size cheked-color">
+						<input name="theme" id="blackWhite" value="blackWhite" class="form-control text-left" type="radio" ng-model="data.theme"> 
+						<span class="ic ic1">Black and White</span>
+					</label>
+				</div>
+ 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 admin-check-boxes">
+					<label for="darkBlue" class="check-size cheked-color">
+						<input name="theme" id="darkBlue" value="darkBlue" class="form-control text-left radio_color2" type="radio" ng-model="data.theme"> 
+						<span class="ic ic2">Dark Blue</span>
+					</label>
+           		</div>
+			<!--	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 admin-check-boxes">
+					<label for="cyan" class="check-size cheked-color">
+						<input name="theme" id="cyan" value="cyan" class="form-control text-left" type="radio" ng-model="data.theme"> 
+						<span class="ic ic3">Cyan</span>
+					</label>
+				</div> -->
+			</div>
+		</div>
+      	<div class="clearfix"></div>
+      			<div style="text-align:center">
+			<a type="submit" class="btn btn-default buttonColor stDashboardSettingSave" ng-click="updateDashboardSetting(data,form)">
+				<i class="glyphicon glyphicon-ok"></i> Save
+			</a>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      	
+
+ 	</div>
+ 	
+ 	<div ng-if="currentTab=='about'">
+ 		<div class="center_about">
+		<div class="text-center pv"><h3>About</h3></div>
+		
+		<div class="navBarText text-justify" ng-bind="norlinxAbout"></div><br>
+		<div class="navBarText text-justify" ng-bind="('Speciality : ') + norlinxSpeciality"></div><br>
+		<div class="block-center lgDisplayTable"><div class="navBarText text-center pull-left" ng-bind="appVersion"></div>
+      		<a ng-init="getChangeLog()" class="fa fa-info-circle dash-info" tooltip-class=""  tooltip-placement="right" uib-tooltip="{{changeLog}}" ></a>
+      	</div>
+		<div class="navBarText text-center" ng-bind="dbversion"></div><br>
+		</div>
+ 	</div>
+</form>
+</div>
+<div class="clearfix"></div>
+<script type="text/javascript">
+/* $(".close_menu").click(function(){
+	$(this).parent().addClass('slide-left');
+}); */
+</script>

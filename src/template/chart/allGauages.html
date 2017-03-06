@@ -1,0 +1,28 @@
+<div id="meter{{action.childWidgets}}"  class= "meterWidget"></div>
+<img ng-src="img/gaugeIcons/{{action.data.img}}.png" err-src="img/gaugeIcons/errGauge.png" class="gaugeImg"/>
+<div class="meterMaxMinBox">
+	<div class="bloc-left">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="meter-timing-blocks" id="critical_max_text" data-fittext=".8" data-fittext-min="12" data-fittext-max="15" ng-bind="('Critical max : ')+(action.data.CriticalMax | number:3)"></div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="meter-timing-blocks" id="warning_max_text" data-fittext=".8" data-fittext-min="12" data-fittext-max="15" ng-bind="('Warning max : ')+(action.data.WarnMax | number:3)"></div>
+		</div>
+	</div>
+	<div class="bloc-right">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="meter-timing-blocks" id="warning_min_text" data-fittext=".8" data-fittext-min="12" data-fittext-max="15" ng-bind="('Warning min : ')+(action.data.WarnMin | number:3)"></div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="meter-timing-blocks" id="critical_min_text" data-fittext=".8" data-fittext-min="12" data-fittext-max="15" ng-bind="('Critical min : ')+(action.data.CriticalMin | number:3)"></div>
+		</div>
+	</div>
+</div>
+
+<!-- <script>
+  window.fitText( document.getElementById("critical_max_text"),1.5,{minFontSize:'12px',maxFontSize: '15px'} );
+  window.fitText( document.getElementById("warning_max_text"),1.5,{minFontSize:'12px',maxFontSize: '15px'});
+  window.fitText( document.getElementById("warning_min_text"),1.5,{minFontSize:'12px',maxFontSize: '15px'});
+  window.fitText( document.getElementById("critical_min_text"),1.5,{minFontSize:'12px',maxFontSize: '15px'});
+  <!-- Added 26/12/16 by Sachin Dudhara from https://github.com/adactio/FitText.js 
+</script> -->

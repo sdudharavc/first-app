@@ -1,0 +1,23 @@
+<div class="gdb-data-table">
+<div class="modal-header">
+    <div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+ 	<h3>Available Positions</h3>
+</div>
+    <div class="data-table-content">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>U space</th>
+                <th>Postions</th>
+            </tr>
+            </thead>
+            <tbody>
+				
+				<tr class="odd" ng-class-odd="'rack-labels'" ng-class-even="'rack-labels-even'"  ng-repeat="uspace in item">
+		            <td ng-bind="uspace.Uspace"></td>
+		           	<td ng-bind="uspace.Position"></td>
+		        <tr>
+            </tbody>
+        </table>
+    </div>
+</div>

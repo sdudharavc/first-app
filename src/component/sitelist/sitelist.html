@@ -1,0 +1,17 @@
+<div>	
+<div class="stHeading">List of Site(s)</div>
+	<div class="row">
+	  <div class="col-sm-12 col-md-6" ng-repeat="list in siteList" ng-class="{'clearFixSL' : (($index+1)%2==1)}">
+	    <div class="card card-block slCard" ng-class="{'stSelectedSite' : list.isDefault==1}">
+	      <h3 class="card-title slCardHeading" ng-bind="list.SiteName"></h3>
+	      <div class="full-block" ng-bind="('Address : ') + (list.SAddress1) + (list.SAddress2)"></div> 	
+	      <div class="block-left" ng-bind="('Country : ') + (list.SCountry)"></div>
+	      <div class="block-right" ng-bind="('State : ') + (list.SState)"></div>
+	      <div class="block-left" ng-bind="('City : ') + (list.SCity)"></div>
+	      <div class="block-right" ng-bind="('Zip : ') + (list.SZip)"></div>
+	      <div class="btn btn-default" ng-click="siteListSelect(list)">Select</div>
+	      <div style="clear:both;"></div>
+	    </div>
+	  </div>
+	</div>
+</div>

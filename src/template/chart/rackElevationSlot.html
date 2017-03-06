@@ -1,0 +1,117 @@
+<div ng-controller="DashboardCtrl" class="content rack-container-inner">
+        <div class="col-md-3 padding-none">
+            <div class="rack-details">
+                <div class="right-sideform-heading">
+                    <h2>Cabinet Details:</h2>
+                </div>
+                <div class="rack-labels">
+                	<span class="rack-title resRackLabel">Site:</span>
+                    <span class="title-content resRackContent" ng-bind="action.data.rackSiteDetail.SiteName"></span>
+                </div>
+                <div class="rack-labels-even">
+                	<span class="rack-title resRackLabel">DC Name:</span>
+                    <span class="title-content resRackContent" ng-bind="action.data.rackSiteDetail.DCName"></span>
+                </div>
+                <div class="rack-labels">
+                	<span class="rack-title resRackLabel">Floor:</span>
+                    <span class="title-content resRackContent" ng-bind="action.data.rackSiteDetail.FloorName"></span>
+                </div>
+                <div class="rack-labels-even">
+                	<span class="rack-title resRackLabel">Cabinet:</span>
+                    <span class="title-content resRackContent" ng-bind="action.data.rackSiteDetail.CabinetName"></span>
+                </div>
+                <div class="rack-labels">
+                	<span class="rack-title resRackLabel" >Modified Data:</span>
+                    <span class="title-content resRackContent" ng-bind="(action.data.rackSiteDetail.LastModifiedDate| changeDateToUTC)"></span>
+                </div>
+
+                <div class="right-sideform-heading">
+                    <h2>Metric Details:</h2>
+                </div>
+                <div ng-class-odd="'rack-labels'" ng-class-even="'rack-labels-even'"  ng-repeat="metricVal in action.data.rackMetricValues">
+                    <span class="rack-title resRackLabel" ng-if="metricVal.MetricValue" ng-bind="(metricVal.Metric)+' :'"></span>
+                    <span class="title-content resRackContent" ng-if="metricVal.MetricValue" ng-bind="(metricVal.MetricValue | number:1) + (metricVal.type)"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6  padding-none">
+
+            <div class="test">
+                <div class="frontRareButtonsInput">
+                    <div ng-bind="action.data.rackElevationData.DeviceName"></div>
+                    <div class="block-center">
+                        <input type="radio" ng-model="action.data.rackView" ng-click="getRackView(action.data.rackView, action, action.data.index)" value="front">
+                        	<label class="rack-lables">Front</label>
+                        <input type="radio" ng-model="action.data.rackView" ng-click="getRackView(action.data.rackView, action, action.data.index)" value="rear">
+                        	<label class="rack-lables">Rear</label>
+                    </div>
+                    <div class="rack-table">
+                        <table width="348" align="center">
+                            <tbody>
+                            <tr>
+                                <td class="left-side-rack resBorderForNG"></td>
+                                <td class="center-rack top-rack resBorderForNG">
+                                	<span class="rack-heading ng-binding " ng-bind="action.data.viewName"></span>
+                                </td>
+                                <td class="right-side-rack resBorderForNG"></td>
+                            </tr>
+                            <tr ng-repeat="n in [] | range:action.data.totalNoRackSlot | reverseAnything">
+                                <td class="left-side-rack resBorderForNG" ng-bind="(n+1)+'u'"></td>
+                                <td class="center-rack"><img ng-src="{{action.data.img[n+1]}}" style="position:absolute;" ng-style="action.data.style[n+1]"/></td>
+                                <td class="right-side-rack resBorderForNG" ng-bind="(n+1)+'u'"></td>
+                                <td class="get-Device-name"></td>
+                            </tr>
+                            <tr>
+                                <td class="left-side-rack"></td>
+                                <td class="center-rack top-rack resBorderForNGLast"></td>
+                                <td class="right-side-rack"></td>
+                            </tr>
+                            </tbody></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        	<div class="rack-details margin-lr-none" ng-click="rackPositionPopup(action.data.availPosition)" ng-if="action.data.rackAvailableUSpace.Avilable_Uspace!=undefined">
+                <div class="right-sideform-heading">
+                    <h2>Available U-Space:</h2>
+                </div>
+                <div ng-class-odd="'rack-labels'" ng-class-even="'rack-labels-even'">
+                    <span class="rack-title" ng-if="action.data.rackAvailableUSpace.Avilable_Uspace!=undefined" ng-bind="action.data.rackAvailableUSpace.Avilable_Uspace"></span>
+                </div>
+            </div>
+            <div class="rack-details margin-lr-none" ng-if="action.data.rackAvailableUSpace.Avilable_Uspace==undefined">
+                <div class="right-sideform-heading">
+                    <h2>Available U-Space:</h2>
+                </div>
+                <div ng-class-odd="'rack-labels'" ng-class-even="'rack-labels-even'">
+                    <span class="rack-title" >No data Found</span>
+                </div>
+            </div>
+            <div class="left-sidebar" ng-if="action.data.rackNewRPCData.rpcDataArray!=undefined">
+                <div class="sidebar-list margin-lr-none" style="height:82px">
+                    <ul class="sidebar-main-hading">
+                        <li ng-repeat="RpcData in action.data.rackNewRPCData.rpcDataArray">
+                            <span class="list-heading">
+                            	<i class="fa fa-caret-down" aria-hidden="true" ng-bind="RpcData.rackDetail.rpc_name"></i>
+                            </span>
+                            <ul class="sidebar-sub-list">
+                                <li ng-repeat="BreakerData in RpcData">
+                                	<span class="main-menu-tab" ng-bind="(BreakerData.Breaker.breakerDetail.brk_name)+' : '+(BreakerData.Breaker.breakerDetail.MetricValue | formatToOneDigit)"></span>
+                                    <table width="100%" class="sub-sub-list rack-table-sub-menu" style="padding:0">
+                                        <tr ng-repeat="Outlet in BreakerData.Breaker.outletDetail">
+                                            <td ><span class="list-content" ng-bind="Outlet.out_name"></span></td>
+                                            <td ><span class="spacing-10" ng-bind="(Outlet.MetricValue | formatToOneDigit)"></span></td>
+                                            <td ><img ng-src="{{Outlet.OutShape=='C13' ? 'img/c_13.png' : 'img/c_19.png'}}" /></td>
+                                        </tr>
+                                    </table>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    <div class="clearfix"></div>
+</div>

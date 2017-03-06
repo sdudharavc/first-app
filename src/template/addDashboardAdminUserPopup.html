@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+	<h3 ng-bind="'Add Dashboard permission'"></h3>
+</div>
+<div class="panel-body">
+	<form role="form" name="form" novalidate class="form-validate mb-lg">
+          	<div class="col-lg-12 col-md-12 form-group has-feedback">
+          	<ui-select ng-model="data.dashboard" theme="selectize" title="Choose a dashboard" required>
+	            <ui-select-match placeholder="Select or search a dashboard in the list... *">{{$select.selected.name}}</ui-select-match>
+	            <ui-select-choices repeat="item in dashboardList | filter: $select.search">
+	              <div ng-bind-html="item.name | highlight: $select.search"></div>
+	             <!--  <small ng-bind-html="item.email | highlight: $select.search"></small> -->
+	            </ui-select-choices>
+          	</ui-select>
+		</div>
+		<div class="col-lg-12 col-md-12 form-group has-feedback">
+			<ui-select ng-model="data.user" theme="selectize" title="Choose a user" ng-change="readWriteStatus(data.user)" required>
+	            <ui-select-match placeholder="Select or search a user in the list... *" >{{$select.selected.FirstName}}</ui-select-match>
+	            <ui-select-choices repeat="item in userList | filter: $select.search">
+	              <div ng-bind-html="item.FirstName | highlight: $select.search"></div>
+	              <small ng-bind-html="item.LastName | highlight: $select.search"></small>
+	            </ui-select-choices>
+          	</ui-select>
+		</div>
+		<div class="col-lg-12 col-md-12 form-group has-feedback">
+		 	<div class="form-group" ng-class="{error: _form.read.$error && _form.submitted}">
+			 	<label for="read" class="check-size cheked-color" ng-class="{'disabledInputCheckBoxForUser' :disableRead}">
+					 <input tabindex="14" type="checkbox" id="read" checked="checked" ng-model="data.AllowReadDashboard" ng-disabled="disableRead"
+					 	ng-click="(data.AllowWriteDashboard ==true && data.AllowReadDashboard ==false) ? data.AllowWriteDashboard=false : nothing">
+					 <span class="ic"></span>Read
+				</label>
+				<label for="write" class="check-size cheked-color disabled" ng-class="{'disabledInputCheckBoxForUser' :disableWrite}">
+					 <input tabindex="14" type="checkbox" id="write" ng-model="data.AllowWriteDashboard" ng-disabled="disableWrite"
+					 	ng-click="(data.AllowReadDashboard ==false || data.AllowReadDashboard == undefined) ? data.AllowReadDashboard=true : data.AllowReadDashboard=true">
+					 <span class="ic"></span>Write
+				</label>
+           	</div>
+       	</div>
+		<br>
+       	<button type="submit" class="btn btn-block btn-primary mt-lg" ng-click="adddashpermission(data, form)">Add</button>
+	</form>
+</div>

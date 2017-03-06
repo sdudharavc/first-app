@@ -1,0 +1,15 @@
+<div class="gdb-data-table">
+<div class="modal-header">
+    <div class="close-button" ng-click="cancel()" aria-hidden="true">&times;</div>
+	<h3 ng-bind="modelName"></h3>
+</div>
+<!-- <div ng-if="gridOptionsForAlerts.data.length>0" ui-grid="gridOptionsForAlerts" class="gridSetting grid" ui-grid-pagination ui-grid-resize-columns ui-grid-grouping></div>
+<div ng-if="!gridOptionsForAlerts.data.length>0"  class="gridsterNoDataFoundForAlert grid navBarText block-center">
+	<div class="noDataFound">No alert found</div>
+</div> -->
+<a class="k-button save_state" ng-click="saveState(modelName)">Save Schema</a>
+<div kendo-grid="GridBram"  k-options="gridOptionsForAlerts" class="gridKendoForAllMain" k-ng-delay="gridOptionsForAlerts" ng-show="gridOptionsForAlerts.dataSource.data.length>0"></div>
+<div ng-if="!gridOptionsForAlerts.dataSource.data.length>0"  class="gridsterNoDataFoundForAlert grid navBarText block-center">
+	<div class="noDataFound">No alert found</div>
+</div>
+</div>

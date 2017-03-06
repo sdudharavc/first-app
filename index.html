@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="gsm" >
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>GSM Dashboard</title>
+        <meta name="description" content="" />
+        <!-- <meta name="viewport" content="width=device-width" /> -->
+       <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+
+        <!--custom css-->
+        <link rel="icon" href="img/favicon.ico" type="image/ico">
+        <link rel="stylesheet" href="dist/angular-gridster/angular-gridster.min.css" />
+        <link rel="stylesheet" href="css/app.css" />
+        <link rel="stylesheet" href="css/angular-material.css" />
+        <link rel="stylesheet" href="css/twitter_bootstrap.css" />
+        
+        
+        <!-- <link rel="stylesheet" href="css/custom.css" />
+        <link rel="stylesheet" href="css/custom.css" /> -->
+        
+        
+        <link rel="stylesheet" href="css/datatables.bootstrap.css" />
+        <link rel="stylesheet" href="dist/fontawesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="dist/simple-line-icons/css/simple-line-icons.css" /> 
+        <link rel="stylesheet" href="dist/bootstrap-3.3.7-dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="dist/ui-notification/angular-ui-notification.min.css" />
+        <link rel="stylesheet" href="dist/jquery_slider/jquery.mCustomScrollbar.css" />
+        <link rel="stylesheet" href="css/fontCSS.css">
+       
+        <link rel="stylesheet" href="dist/amcharts/export.css" />
+        <link rel="stylesheet" href="dist/daterangepicker/daterangepicker.css"/> 
+        <link rel="stylesheet" href="dist/ng-table/ng-table.min.css"/>
+        <link rel="stylesheet" href="dist/select/select.css" />
+        <link rel="stylesheet" href="dist/ui-grid/ui-grid.min.css" />
+        <link rel="stylesheet" href="dist/select/selectize.default.min.css" />
+        <link rel="stylesheet" href="dist/angular-bs-toggle/angular-bootstrap-toggle.min.css" />
+        
+	    <link rel="stylesheet" href="dist/kendo_ui/kendo.common-material.min.css" />
+	    <link rel="stylesheet" href="dist/kendo_ui/kendo.material.min.css" />
+	    <link rel="stylesheet" href="dist/kendo_ui/kendo.material.mobile.min.css" />
+        <link rel="stylesheet" href="css/custom.css" />
+        <link rel="stylesheet" href="css/style.css" />	
+        <link rel="stylesheet" ng-href="{{theme}}" />
+         
+         
+        <!--stock js-->
+        <script src="js/jquery-3.1.1.min.js" ></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-ui-router.js"></script>
+        <script src="js/angular-sanitize.min.js"></script>
+        <script src="js/angular-route.min.js"></script>
+        <script src="js/ui-bootstrap-tpls.min.js"></script>
+        
+        <script src="js/angular-material.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/angular-datatables.min.js"></script>
+
+
+        <script src="dist/bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRuGU5qthXIWaBqmOUXO-6QOdl2vS_8tI" async defer></script>
+        <script src="dist/ui-notification/angular-ui-notification.min.js"></script>
+        <script src="dist/angular-confirm/angular-confirm.js"></script>
+         <script src="dist/moment.min.js"></script>
+        <script src="dist/daterangepicker/daterangepicker.js"></script>
+       
+        <script src="dist/underscore/underscore.min.js"></script>
+        <script src="dist/underscore/angular-underscore-module.js"></script>
+        <script src="dist/jquery_slider/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="dist/jquery_slider/scrollbars.min.js"></script>
+        <script src="dist/amcharts/amcharts.js"></script>
+        <script src="dist/amcharts/gauge.js"></script>
+        <script src="dist/amcharts/light.js"></script>
+        <script src="dist/amcharts/dark.js"></script>
+        <script src="js/customFunction.js"></script>
+        <script src="dist/angular-gridster/angular-gridster.min.js"></script>
+        <script src="dist/ng-table/ng-table.js"></script>
+        <script src="dist/select/select.js"></script>
+        <script src="dist/ui-grid/ui-grid.min.js"></script>
+        <script src="dist/ui-grid/pdfmake.js"></script>
+        <script src="dist/ui-grid/vfs_fonts.js"></script>
+        <script src="dist/highchart/highstock.js"></script>
+        <script src="dist/highchart/highcharts-more.js"></script>
+        <script src="dist/highchart/exporting.js"></script>
+        <script src="dist/highchart/dark.js"></script>
+        <script src="dist/angular-spinner/angular-spinner.js"></script>
+        <script src="dist/angular-owl-carousel/angular-owl-carousel.js"></script>
+        <script src="dist/kendo_ui/kendo.all.min.js"></script>
+        <script src="dist/kendo_ui/jszip.min.js"></script>
+        
+        <script src="dist/ng-fittext.js"></script>
+        
+        <script src="dist/angular-bs-toggle/angular-bootstrap-toggle.min.js"></script>
+        <script src="dist/ngDraggable/ngDraggable.min.js"></script>
+		<script src="dist/screenfull/screenfull.js"></script>
+
+
+
+        <!--custom core js-->
+        <script src="src/js/gsmApp.js"></script>
+        <script src="src/js/gsmController.js"></script>
+        <script src="src/js/gsmConfig.js"></script>
+        <script src="src/js/gsmServices.js"></script>
+        <script src="src/js/gsmInterceptor.js"></script>
+        <script src="src/js/gsmFactories.js"></script>
+        <script src="src/js/directives/gsmDirectives.js"></script>
+        <script src="src/js/factories/chartFactories.js"></script>
+        <script src="src/js/factories/utilsfactory.js"></script>
+        <script src="src/js/gsmFilter.js"></script>
+        <script src="src/js/gsmConstant.js"></script>
+        <script src="src/js/services/dashboardServiceFunctions.js"></script>
+        <script src="src/js/factories/chartDataFactory.js"></script>
+        <script src="src/js/directives/dynamicDirective.js"></script>
+        <script src="src/js/directives/errSrc.js"></script>
+
+
+        <!-- components js -->
+        <script src="src/component/dashboard/dashboard.js"></script>
+        <script src="src/component/dashboard/widgetSetting.js"></script>
+        <script src="src/component/dashboard/customWidget.js"></script>
+        <script src="src/component/login/login.js"></script>
+        <script src="src/component/settingdb/settingdb.js"></script>
+        <script src="src/component/setting/setting.js"></script>
+        <script src="src/component/sitelist/sitelist.js"></script>
+        <script src="src/component/rackElevation/rackElevation.js"></script>
+         <script src="src/component/report/report.js"></script>
+    </head>
+
+    <body ng-controller="RootCtrl" data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled, 'aside-collapsed-text': app.layout.isCollapsedText}">
+        <!--    <div data-preloader></div>-->
+        <!-- <div class="ui-loader-background" us-spinner="{radius:30, width:8, length: 16}"></div> -->
+        <header ng-include="'src/template/core/top-navbar.html'" class="topnavbar-wrapper"></header>
+        <!-- <div id="mySidenav" class="sidenav">
+            <div ng-if="menuSlide">
+                <a href="#/dashboard"><em class="icon-tag sideBarIcon"></em>Welcome</a>
+                <a href="#/dashboard"><em class="icon-speedometer sideBarIcon"></em>Dashboards</a>
+                <a href="#" ng-click="logout()"><em class="glyphicon  sideBarIcon glyphicon-share-alt"></em>Log Out</a>
+                
+             </div>
+               
+            <div ng-if="!menuSlide">
+                   <a href="#/dashboard"><em class="icon-tag sideBarIcon"></em></a>
+                   <a href="#/dashboard"><em class="icon-speedometer sideBarIcon"></em></a>
+                   <a href="#" ng-click="logout()"><em class="glyphicon sideBarIcon glyphicon-share-alt"></em></a>
+            </div>
+        </div> -->
+        <div id="main"><div ui-view></div></div>
+    </body>
+
+</html>
+<style>
+    .container {
+        width: 250px;
+    }
+
+    .container p, .container h1 {
+        width: 210px;
+    }
+</style>

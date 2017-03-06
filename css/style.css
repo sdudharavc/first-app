@@ -1,0 +1,626 @@
+/*main*/
+body{
+    font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a:hover {
+    cursor: pointer;
+    opacity: 1;
+    color: inherit;
+    text-decoration: blink;
+}
+input {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    padding: 4px;
+}
+.container {
+    margin: auto;
+    max-width: 1000px;
+}
+.code-coverage {
+    font-weight: bold;
+    float: right;
+    padding: 10px;
+}
+
+/*dashboard*/
+.controls {
+    margin-bottom: 20px;
+}
+/* .page-header {
+    margin-top: 20px;
+} */
+ul {
+    list-style: none;
+}
+.box {
+    height: 100%;
+}
+.box-header {
+    padding: 0 10px 0 10px;
+    cursor: move;
+    position: relative;
+}
+.box-header h3 {
+    margin-top: 10px;
+    display: inline-block;
+}
+.box-content {
+    padding: 10px;
+}
+.box-header-btns {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+form {
+    margin-bottom: 0;
+}
+
+.nav-tabs > li > a {
+  margin:0;
+  border-radius:0;
+}
+.margin-2 {
+  margin-left: 2px;
+ 
+}
+.meter-timing-blocks {
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/**************************css for modal specific**************************************/
+.modal-header {
+    padding: 15px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.modal-footer {
+  margin-top: 0 !important;
+}
+
+.modal-content {
+  border-radius: 2px !important;
+}
+
+.modal-footer{
+    padding: 10px 10px 10px;
+/*    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;*/
+}
+
+.modal-footer .btn{    
+    margin-top: 10px;
+    margin-right: 13px;
+}
+
+.modal-body{    
+    padding: 10px !important;
+}
+
+
+/***************************************css for loader**********************************/
+
+.ui-loader-background {
+    width: 100%;
+    height: 100%;
+    top: -58px;
+    padding: 0px;
+    margin: 0px;
+    display: none;
+    position: absolute;
+    z-index: 1060;
+    display: block !important;
+}
+
+#widget-model .modal-header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+#widget-model .modal-body {
+  padding: 0 !important;
+  position: relative;
+}
+
+#widget-model .modal-footer {
+  padding: 10px;
+}
+#widget-model .nav-tabs > li.active > a,#widget-model .nav-tabs > li.active > a:hover,#widget-model .nav-tabs > li.active > a:focus {
+  border: medium none !important;
+}
+#widget-model .nav > li > a {
+  border-radius: 0 !important;
+  display: block;
+  padding: 10px 15px;
+  position: relative;
+  margin:0 !important;
+}
+
+
+/************************************** mapFloorList css****************************/
+#myFloorListModal .modal-content, #myFloorListDataModal .modal-content{
+  padding: 20px;
+}
+#myFloorListModal h3 ,#myFloorListDataModal h3{
+  margin: 0 0 10px;
+}
+.floor-list-container {
+  height: 400px;
+  oveflow: hidden;
+}
+
+.mapFloorContent{
+	overflow-x: hidden;
+}
+
+.mflpDialog{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.floor_list {
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+}
+#myFloorListModal .modal-dialog, #myFloorListDataModal .modal-dialog {
+  margin: 30px auto;
+  width: 360px;
+}
+
+/****************************For alerts Data Button**************************************/
+.btn.btn-primary.alert-button {
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-radius: 0;
+  font-size: 18px;
+  margin: 20px 4px 0;
+  width: 200px;
+}
+.alert-count {
+  display: block;
+}
+.alert-button i{
+margin-right:5px;
+}
+/****************************For alerts Data Button end here**************************************/
+/** 
+   Widgets style
+**/
+
+.block-widget .box {
+  border: none;
+}
+
+.block-widget i {
+  font-size: 14px;
+}
+.block-widget .box-header h3 {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 15px;
+    margin: 10px 0 5px;
+}
+.block-widget .block-widget a {
+  font-size: 12px;
+}
+.block-widget .box-header a {
+    margin-left: 7px;
+}
+/***********************************Widgets style end here***********************************/
+
+/**************************************popup style*********************************/
+.modal-header h3 {
+  margin: 0;
+  padding: 6px;
+  font-size: 21px;
+}
+.modal-header {
+  border-bottom: medium none;
+  border-radius: 0;
+  padding: 10px;
+}
+.btn{
+  margin: 0;
+}
+
+.close {
+  font-size: 22px;
+  font-weight: normal;
+}
+.modal-footer {
+  padding: 10px;
+  text-align: right;
+}
+.modal-content .btn i {
+  font-size: 12px;
+  font-weight: normal;
+  margin-right: 5px;
+}
+.widget-poups.add-pop-up .modal-header {
+  border-radius: 0;
+  padding: 10px;
+}
+#widget-model lable {
+  font-size: 15px;
+}
+
+
+/****************************For alerts Data Button**************************************/
+.btn.btn-primary.alert-button {
+  border-top:none;
+  border-left:none;
+  border-right:none;
+  border-radius: 0;
+  font-size: 18px;
+  margin: 20px 4px 0;
+  width: 47%;
+}
+.alert-count {
+  display: block;
+}
+.alert-button i{
+margin-right:5px;
+}
+.logo h2 {
+    font-size: 22px;
+}
+.header {
+    padding: 20px 0;
+}
+.welcome-message h6 {
+    text-align: right;
+}
+.content {
+    padding-right: 20px
+}
+
+.db-container {
+    padding: 0 70px;
+}
+
+.sidebar-list > ul {
+    margin: 0;
+    padding: 0;
+}
+.sidebar-list > ul > li {
+    display: block;
+}
+
+.logo {
+    padding-left: 20px;
+}
+
+.sidebar-sub-list {
+    padding: 5px 0 0 20px;
+}
+
+.sidebar-sub-list > li {
+    display: block;
+    font-size: 12px;
+}
+
+.sidebar-list li span {
+    display: block;
+    font-weight: bold;
+}
+
+.list-heading i {
+    margin-right: 10px;
+}
+
+.sidebar-sub-list > li {
+    padding: 4px 0;
+}
+
+.sidebar-sub-list {
+    padding: 0px 0 0px 20px;
+}
+
+.sidebar-list > ul > li > span {
+    cursor: pointer;
+    display: block;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.sidebar-sub-list {
+    display: none;
+}
+
+.menu-active .sidebar-sub-list {
+    display: block;
+}
+
+.border-bottom {
+    padding: 13px 10px;
+}
+
+.top-form label {
+    color: #010101;
+    font-size: 12px;
+}
+.top-form .form-inline input.form-control {
+    border-radius: 0;
+    height: 30px;
+    margin-right: 10px;
+    width: 130px;
+}
+
+.btn.btn-default.cancelbutton {
+    border-radius: 0;
+    font-size: 12px;
+    height: 30px;
+}
+
+.btn.btn-default.savebutton {
+    border-radius: 0;
+    font-size: 12px;
+    height: 30px;
+}
+
+.padding-none {
+    padding: 0;
+}
+
+.border-bottom.padding-none {
+    padding: 10px;
+}
+
+.right-sideform-heading > h2::before {
+    bottom: -10px;
+    content: "";
+    position: absolute;
+    width: 40px;
+}
+
+.right-sideform-heading > h2 {
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+}
+
+.reight-side-form {
+    margin-top: 30px;
+}
+.rack-details {
+    padding: 20px;
+}
+.title-content {
+    margin-left: 10px;
+}
+.right-sidebar-list > ul {
+    margin: 0;
+    padding: 20px 0 0;
+}
+
+.right-sidebar-list li {
+    display: block;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.test .block-center {
+    margin: 0 auto !important;
+}
+.block-center label {
+    margin-left: 7px;
+    margin-right: 20px;
+}
+
+.left-side-rack {
+    background: rgba(0, 0, 0, 0) url("../img/left-bg.jpg") repeat scroll 0 0;
+    color: #9f9f9f;
+    font-size: 10px;
+    height: 12.014px;/* 36.028px; */
+    text-align: center;
+    width: 30px;
+}
+
+.right-side-rack {
+    background: url('../img/left-bg.jpg');
+    height: 12.014px;/* 36.028px; */
+    width: 30px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.center-rack {
+   width: 250px;
+}
+
+.rack-container {
+    padding: 20px;
+    width: 600px;
+}
+
+.top-rack.center-rack {
+    background: url(../img/center.jpg);
+    background-size: 100% 38px;
+}
+.center-rack {
+    background: url('../img/rack-bg.jpg');
+}
+
+.rack-heading {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer-list > li {
+    display: inline-block;
+    font-size: 16px;
+    padding: 5px 20px;
+}
+
+.footer-heading {
+    float: left;
+    margin: 8px 20px 0 0;
+}
+
+.footer-list {
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-center {
+    display: table;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.left-sidebar-heading > h2 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 17px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.sidebar-main-hading {
+    margin: 0;
+    padding: 0;
+}
+
+.left-sidebar-heading span {
+    font-size: 9px;
+}
+
+.rack-id {
+    padding-left: 15px;
+}
+.top-form .form-inline .form-control.small-input {
+    width: 30px;
+}
+.rack-details {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    padding: 20px;
+    padding-top: 1px;
+}
+.sidebar-list {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 20px;
+}
+.rack-table img {
+    width: 328px;
+}
+.rack-labels-even {
+
+    padding: 5px 10px;
+}
+.rack-labels{
+    padding: 5px 10px;
+}
+.sub-active .sub-sub-list {
+    display: block;
+}
+.sub-sub-list {
+    display: none;
+}
+
+.sub-sub-list > li {
+    display: block;
+    overflow: hidden;
+    padding: 4px 20px 0 0;
+    margin-bottom:8px;
+}
+.list-content {
+    float: left;
+}
+.sub-sub-list img {
+    float: right;
+    width: 20px;
+}
+.sub-sub-list {
+    padding-left: 10px;
+}
+.margin-lr-none{
+    margin:20px 0;
+}
+.content.rack-container-inner {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*****************************************css for convertion widget**********/
+.animate-show.ng-hide > a {
+    
+}
+.block-widget .box-header a.btn {
+  margin-left: 7px;
+  margin-top: -2px;
+  padding: 0;
+}
+
+.line {
+  display: block;
+  float: none;
+  margin-bottom: 0 !important;
+  margin-left: 0 !important;
+  padding: 5px 0;
+  position: relative;
+  text-align: center;
+  text-indent: 25px;
+  width: 100%;
+  z-index: 3;
+}
+.box-header-btns.pull-right.save-position.set-style-880 > ul {
+  float: right;
+  padding: 0;
+}
+.cbarIcon{
+  background: rgba(0, 0, 0, 0) url("../img/widgetIcon/bar_sensor.png") no-repeat scroll 4px 1px / 25% auto;  
+} 
+
+.careaIcon{
+  background: rgba(0, 0, 0, 0) url("../img/widgetIcon/area_sensor.png") no-repeat scroll 4px 1px / 25% auto;  
+} 
+
+.clineIcon{
+	background: rgba(0, 0, 0, 0) url("../img/widgetIcon/line_sensor.png") no-repeat scroll 4px 1px / 25% auto;  
+}
+
+.cbarIconAll{
+  position: absolute;
+  content: "";
+  width: 67px;
+  height: 27px;
+  display: inline-block;
+  left:7px;
+  margin-top: 4px;
+  z-index: 2;
+}
+.line:hover {
+    color:#848484 !important;
+    text-decoration:none;
+}
+.line:hover::after{
+    opacity:0.5;
+}
+.chart_changer {
+  padding: 0;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  max-width: 70px;
+  right:-10px;
+  z-index: 1;
+}
+/*manish 09-11-2016*/
+.box-header-btns.pull-right > ul {
+  float: right;
+  padding: 0;
+}
+/*manish 09-11-2016*/

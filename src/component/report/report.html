@@ -1,0 +1,173 @@
+    <section class="rack-slider">
+        <div class="col-md-12 padding-none" style="text-align: center">
+            <div class="slider-content">Report Generate</div>
+            
+        </div>
+    </section>
+<section class="report-generate-section clearfix">
+    <div class="col-md-3 col-lg-2 padding-none">
+        <div class="organijation-sidebar">
+           <div class="dashboard-heading">
+              <h2>Organization</h2>
+           </div>
+           <div class="clearfix"></div>
+           <div class="organijation-listing">
+              <!-- <div class="organijation-search">
+                 <input type="text" value="search">
+              </div> -->
+           
+           <div class="organijation-tree-list">
+              <ul class="organijation-list" ng-repeat = "floor in ListForTree track by floor.GSMUKey">
+                 <li class="organijation-list-main-parent" ng-class="{'tree-active' : floor.OpenTree}">
+                      <div class="organition-tree-list-head" droppable dng-drag-move="onDragStart(floor, $event)"
+                      		sng-drag-end="onDragStart(floor, $event)" vertical-scroll="false" ng-drag="floor.draggable" ng-class="{'repodraggedItem' : !floor.draggable}"
+                         		ng-drag-data="floor" ng-drag-success="onDragComplete(floor, $event, $index)" ng-center-anchor="true">
+							<span class="organijation-tree-icon" ng-click="getCabinetList(floor, $index)"><i class="fa" aria-hidden="true" ng-class="{'fa-plus' : !floor.OpenTree, 'fa-minus' : floor.OpenTree}"></i></span>
+                       		<span class="list-heading" ng-click="getCabinetList(floor, $index)" title="{{floor.org_name}}" ng-bind="floor.org_name"></span>
+                      </div>
+                     <ul ng-repeat="cabinet in ListForTree[$index].cabinet">
+                         <li ng-class="{'tree-active' : cabinet.OpenTree}">
+                            <div class="organition-tree-list-head" ng-click="getDeviceList(cabinet, $index, $parent.$index)" droppable dng-drag-move="onDragStart(cabinet, $event)" 
+                      			sng-drag-end="onDragStart(cabinet, $event)" vertical-scroll="false" ng-drag="cabinet.draggable" ng-class="{'repodraggedItem' : !cabinet.draggable}"
+                         		ng-drag-data="cabinet" ng-drag-success="onDragComplete(cabinet, $event, $index, $parent.$index, undefined, floor.org_name)" ng-center-anchor="true">
+	                            <span class="organijation-tree-icon"><i class="fa" aria-hidden="true" ng-class="{'fa-plus' : !cabinet.OpenTree, 'fa-minus' : cabinet.OpenTree}"></i></span>
+	                            <span class="list-heading" title="{{cabinet.org_name}}" ng-bind="cabinet.org_name"></span>
+                            </div>
+                            <ul ng-repeat="device in ListForTree[$parent.$index].cabinet[$index].device">
+                               <li>
+									<div class="organition-tree-list-head" droppable dng-drag-move="onDragStart(device, $event)" ng-class="{'repodraggedItem' : !device.draggable}"
+                      					sng-drag-end="onDragStart(device, $event)" vertical-scroll="false" ng-drag="device.draggable"
+                         				ng-drag-data="device" ng-drag-success="onDragComplete(device, $event, $index, $parent.$index, $parent.$parent.$index, floor.org_name, cabinet.org_name)" ng-center-anchor="true">
+			                           <span class="list-heading" title="{{device.DeviceName}}" ng-bind="device.DeviceName"></span>
+									</div>
+                               </li>
+                            </ul>
+                         </li>
+                      </ul>
+                   </li>
+              </ul>
+           </div>
+           </div>
+        </div>
+    </div>
+     <div class="dragabble-content" ng-drag-clone="">
+            <div width="100px" class="navBarText">{{clonedData.org_name}}</div>
+            </div>
+    <div class="col-md-6 col-lg-8">
+       <div class="recordgenarate-content-section">
+       <div class="recordgenarate-content-section-inner">
+         <div class="rocord-options-select">
+            <span class="rack-selectbox-label">My Favorites</span>
+            <div class="rack-selectbox">
+                 <select>
+                     <option>--No Favorites--</option>
+                 </select>
+             </div>
+              <div class="clearfix"></div>
+             <span class="rack-selectbox-label">Report Type</span>
+             <div class="rack-selectbox">
+                 <select name="reportType" ng-model="data.reportType" class="form-control" ng-options="d for d in reporttypeData | orderBy:'d'" disabled>
+                        <option disabled value="">None*</option>
+                 </select>
+             </div>
+              <div class="clearfix"></div>
+            </div> 
+            <div class="clearfix"></div>
+             <div class="rocord-table-content">
+		            <div class="report-tbl" ng-drop="true" ng-scroll="false" ng-drag-move="true" ng-drop-success="onDropComplete($event)">
+		                <draggableClone></draggableClone>
+		                <table class="table">
+						    <thead>
+						      <tr>
+						        <th>
+							       Action
+				    			</th>
+				    			<th>Sr no.</th><th>Selected Objects</th><th>Child level</th><th>Power Gear</th><th>Breaker</th><th>Location</th>
+						      </tr>
+						    </thead>
+						    <tbody ng-if="selectedItemsFromTree.length>0" ng-repeat="item in selectedItemsFromTree track by item.GSMUKey" ng-drag-success="onDragComplete($data,$event)">
+						      <tr>
+							      <td>
+							         <div class="admin-check-boxes">
+							        	<i class="glyphicon glyphicon-trash" ng-click="removeSelected($index, item)"></i>
+							        </div>
+		    					</td>
+						        <td>{{$index+1}}</td><td>{{item.org_name}}</td><td>{{item.H_Level}}</td>
+						        <td>
+							        <div class="admin-check-boxes">
+							        	<label for="{{$index}}+'powergearCheckBox'" class="check-size cheked-color reportChangeWidthInput">
+					    				<input class="gridInputButton" id="{{$index}}+'powergearCheckBox'" type="checkbox" ng-model="item.powergearCheckBox" 
+					    					ng-click="">
+					    				<span class="ic"></span></label></div>
+				    			</td>
+						        <td>
+							        <div class="admin-check-boxes">
+							        	<label for="{{$index}}+'breakerCheckBox'" class="check-size cheked-color reportChangeWidthInput">
+					    				<input class="gridInputButton" id="{{$index}}+'breakerCheckBox'" type="checkbox" ng-model="item.breakerCheckBox" 
+					    					ng-click="">
+					    				<span class="ic"></span></label></div>
+				    			</td>
+				    			<td>{{item.location}}</td>
+						      </tr>
+						    </tbody>
+						    <div class="repoNoDataFound" ng-if="!selectedItemsFromTree.length>0">Drop Item's here</div>
+						  </table>
+		            </div>
+             </div>
+             
+             <div class="repoPrevButton">
+				  <a type="button" class="btn buttonColor" ng-click="removeAllSelectedItem()">Remove all</a>
+				   <a type="button" class="btn align-right buttonColor" ng-click="previewGrid(data)">Preview</a>
+			 </div>
+			<div class="clearfix"></div>
+       </div>
+       </div>
+    </div>
+    <div class="col-md-3 col-lg-2 padding-none right_gauges">
+        <div class="organijation-sidebar">
+           <div class="dashboard-heading">
+              <h2>Date</h2>
+           </div>
+           <div class="clearfix"></div>
+	           <div class="">
+                     <label class="control-label">Start Date</label>
+						<input type="text" name="daterange" required ng-model="data.dateRange" placeholder="Choose date*"/>
+	             </div>
+          </div> 
+       <div class="organijation-sidebar report-generate-rightsidebar">
+           <div class="dashboard-heading">
+              <h2>Report Metrics</h2>
+           </div>
+           <div class="clearfix"></div>
+           <div class="organijation-listing ">
+	           <div class="organijation-tree-list">
+	              <ul class="organijation-list" ng-repeat="metric in reportMetrics">
+	                 <li class="organijation-list-main-parent" ng-class="{'tree-active' : metric.OpenTree}">
+	                      <div class="organition-tree-list-head">
+	                       <span class="organijation-tree-icon" ng-click="getMetricItem($index)"><i class="fa" aria-hidden="true" ng-class="{'fa-plus' : !metric.OpenTree, 'fa-minus' : metric.OpenTree}"></i></span>    
+		                      <label for="{{$index}}+'metric'" class="check-size cheked-color report-tree-check" >
+				    			<input name="a1" id="{{$index}}+'metric'" ng-model="metric.metricCheckBox" class="form-control text-left" type="checkbox" ng-click="tickUntickMetricItemAll(metric.metricCheckBox, $index)"> 
+				    			<span class="ic"></span>
+				    		  </label>
+	                       <span class="list-heading"  ng-click="getMetricItem($index)" ng-bind="metric.metric"></span>
+	                      </div>
+	                     <ul ng-repeat="metricType in metric.metricType">
+	                         <li>
+	                            <div class="organition-tree-list-head">
+		                            <label for="{{$parent.$index}}+{{$index}}+'metricType'" class="check-size cheked-color report-tree-check">
+						    			<input name="metricType" id="{{$parent.$index}}+{{$index}}+'metricType'" ng-model="metricType.metricTypeCheckBox" 
+						    				ng-click="changemetricForBinary(metricType.metricTypeCheckBox, $index, $parent.$index)" class="form-control text-left" type="checkbox"> 
+						    			<span class="ic"></span>
+						    		  </label>
+		                            <span class="list-heading" ng-bind="metricType.metricType"></span>
+	                            </div>
+	                            
+	                         </li>
+	                     </ul>    
+	                 </li>
+	              </ul>
+	           </div>
+           </div>
+        </div>
+    </div>
+</section>
